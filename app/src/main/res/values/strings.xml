@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">dishee-compose</string>
+    <string name="title_activity_login">Login</string>
+    <string name="welcome_dishee">Welcome to Dishee</string>
+    <string name="login_details">Enter your details to Log in</string>
+    <string name="recover_password">Recover password</string>
+    <string name="email_login">Email</string>
+    <string name="pass_login">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="continue_with">----- Or Continue with -----</string>
+    <string name="no_account">You do not have an account?</string>
+    <string name="register">Register</string>
 </resources>
