@@ -10,4 +10,8 @@
     <string name="continue_with">----- Or Continue with -----</string>
     <string name="no_account">You do not have an account?</string>
     <string name="register">Register</string>
+    <string name="title_activity_upload_picture">UploadPicture</string>
+    <string name="upload_picture">Upload Your \n\nProfile Photo</string>
+    <string name="upload_data">This data will be displayed in your \naccount profile for security</string>
+    <string name="next">Next</string>
 </resources>
