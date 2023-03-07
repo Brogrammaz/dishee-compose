@@ -1,6 +1,7 @@
 package com.disheecompose
 
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -133,6 +134,25 @@ fun LoginScreen(){
 }
 
 
+@Preview(
+    name = "Login Screen Preview",
+    showBackground = true,
+    showSystemUi = true,
+    uiMode = UI_MODE_NIGHT_YES
+)
+@Composable
+fun LoginScreenPreview() {
+    DisheecomposeTheme {
+        // A surface container using the 'background' color from the theme
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            LoginScreen()
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OutlinedTextFieldSample(
@@ -167,7 +187,7 @@ fun SocialMediaIcons(){
             modifier = Modifier
                 .size(50.dp)
                 .clip(RoundedCornerShape(50)),
-            contentScale = ContentScale.FillHeight
+            contentScale = ContentScale.Fit
         )
         Image(
             painter = painterResource(id = R.drawable.twitter),
