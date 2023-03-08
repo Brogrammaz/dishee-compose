@@ -14,6 +14,22 @@
         android:theme="@style/Theme.Disheecompose"
         tools:targetApi="31">
         <activity
+            android:name=".PostDetails"
+            android:exported="true"
+            android:label="@string/title_activity_post_details"
+            android:theme="@style/Theme.Disheecompose">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Home"
+            android:exported="true"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.Disheecompose" />
+        <activity
             android:name=".UploadPicture"
             android:exported="false"
             android:label="@string/title_activity_upload_picture"
@@ -22,13 +38,7 @@
             android:name=".Login"
             android:exported="true"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.Disheecompose">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.Disheecompose" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

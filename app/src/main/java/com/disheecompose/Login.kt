@@ -90,7 +90,7 @@ fun LoginScreen(){
         Spacer(modifier = Modifier.weight(1f))
         OutlinedTextFieldSample(
             value = password,
-            onValueChange = {password = it},
+            onValueChange = { password = it},
             label = R.string.pass_login,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
