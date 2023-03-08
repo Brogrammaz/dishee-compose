@@ -15,7 +15,6 @@
     <string name="upload_picture">Upload Your \n\nProfile Photo</string>
     <string name="upload_data">This data will be displayed in your \naccount profile for security</string>
     <string name="next">Next</string>
-<<<<<<< HEAD
 
     //Home
     <string name="title_activity_home">Home</string>
@@ -30,7 +29,6 @@
     <string name="min_12">12 Minutes</string>
     <string name="min_8">8 Minutes</string>
     <string name="title_activity_post_details">PostDetails</string>
-=======
     <string name="title_activity_feed">Feed</string>
     <string name="view_post">View Post</string>
     <string name="get_started">Get Started</string>
@@ -39,5 +37,4 @@
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_success">Success</string>
     <string name="title_activity_cart">Cart</string>
->>>>>>> 5a03728fceae37d6cc5b03011987b2f4809cba63
 </resources>
