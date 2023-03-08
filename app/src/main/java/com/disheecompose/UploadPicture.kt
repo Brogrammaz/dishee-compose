@@ -56,6 +56,18 @@ fun UploadPictureScreen(){
     }
 }
 
+@Preview(
+    name = "Upload Picture Preview",
+    showBackground = true,
+    showSystemUi = true
+)
+@Composable
+fun UploadPicturePreview() {
+    DisheecomposeTheme {
+        UploadPictureScreen()
+    }
+}
+
 @Composable
 fun UserUpload(
     modifier: Modifier = Modifier,

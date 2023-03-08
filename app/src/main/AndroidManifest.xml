@@ -14,7 +14,52 @@
         android:theme="@style/Theme.Disheecompose"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".PostDetails"
+=======
+            android:name=".Cart"
+            android:exported="false"
+            android:label="@string/title_activity_cart"
+            android:theme="@style/Theme.Disheecompose">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Success"
+            android:exported="false"
+            android:label="@string/title_activity_success"
+            android:theme="@style/Theme.Disheecompose">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Welcome"
+            android:exported="false"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/Theme.Disheecompose">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Feed"
+            android:exported="false"
+            android:label="@string/title_activity_feed"
+            android:theme="@style/Theme.Disheecompose">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UploadPicture"
+            android:exported="false"
+            android:label="@string/title_activity_upload_picture"
+            android:theme="@style/Theme.Disheecompose" />
+        <activity
+            android:name=".Login"
+>>>>>>> 5a03728fceae37d6cc5b03011987b2f4809cba63
             android:exported="true"
             android:label="@string/title_activity_post_details"
             android:theme="@style/Theme.Disheecompose">
