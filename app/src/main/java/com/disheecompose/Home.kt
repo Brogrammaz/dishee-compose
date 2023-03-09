@@ -1,5 +1,6 @@
 package com.disheecompose
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Space
 import androidx.activity.ComponentActivity
@@ -46,6 +47,7 @@ class Home : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier){
@@ -56,65 +58,73 @@ fun HomeScreen(modifier: Modifier = Modifier){
         mutableStateOf("")
     }
 
-    Column(
-        modifier = modifier
-            .padding(16.dp)
+    Scaffold(
+        bottomBar = {
+            BottomNavigation()
+        }
     ) {
-
-        Row(
+        Column(
             modifier = modifier
-                .fillMaxWidth()
+                .padding(16.dp)
         ) {
-            Text(
-                text = stringResource(id = R.string.find_fav_food),
-                fontSize = 40.sp
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Icon(
-                Icons.Outlined.Notifications,
-                contentDescription = null,
+
+            Row(
                 modifier = modifier
-                    .size(40.dp)
-                    .align(Alignment.CenterVertically)
-            )
-        }
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(id = R.string.find_fav_food),
+                    fontSize = 40.sp
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(
+                    Icons.Outlined.Notifications,
+                    contentDescription = null,
+                    modifier = modifier
+                        .size(40.dp)
+                        .align(Alignment.CenterVertically)
+                )
+            }
 
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-        ){
-            OutlinedTextField(
-                value = orderWant,
-                onValueChange = {orderWant = it},
-                label = {
-                    Text(text = stringResource(id = R.string.what_order))
-                },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Done
-                ),
-                keyboardActions = KeyboardActions(
-                    onDone = {focusManager.clearFocus()}
-                ),
-                leadingIcon = {
-                    Icon(Icons.Outlined.Search, contentDescription = null)
-                }
-            )
-            Spacer(modifier = modifier.weight(1f))
-            Icon(
-                painter = painterResource(id = R.drawable.filter_icon),
-                contentDescription = null,
+            Row(
                 modifier = modifier
-                    .size(40.dp)
-                    .align(Alignment.CenterVertically)
-            )
+                    .fillMaxWidth()
+            ){
+                OutlinedTextField(
+                    value = orderWant,
+                    onValueChange = {orderWant = it},
+                    label = {
+                        Text(text = stringResource(id = R.string.what_order))
+                    },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = {focusManager.clearFocus()}
+                    ),
+                    leadingIcon = {
+                        Icon(Icons.Outlined.Search, contentDescription = null)
+                    }
+                )
+                Spacer(modifier = modifier.weight(1f))
+                Icon(
+                    painter = painterResource(id = R.drawable.filter_icon),
+                    contentDescription = null,
+                    modifier = modifier
+                        .size(40.dp)
+                        .align(Alignment.CenterVertically)
+                )
+            }
+
+            SpecialDealCard(imageRes = R.drawable.profilepic)
+
+            NearestRestaurantArea()
         }
-
-        SpecialDealCard(imageRes = R.drawable.profilepic)
-
-        NearestRestaurantArea()
     }
+
+
 }
 
 @Composable
@@ -194,5 +204,13 @@ fun NearRestaurantCard(
             Text(text = stringResource(id = restaurantName))
             Text(text = stringResource(id = distance))
         }
+    }
+}
+
+@Preview
+@Composable
+fun Appreview(){
+    DisheecomposeTheme {
+        HomeScreen()
     }
 }

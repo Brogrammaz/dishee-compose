@@ -1,10 +1,13 @@
 package com.disheecompose
 
+import android.os.Build
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -26,6 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.disheecompose.data.CardItem
+import com.disheecompose.data.Comment
+import java.time.Instant
+import java.util.*
 
 @Composable
 fun RestaurantRating(
@@ -33,7 +39,9 @@ fun RestaurantRating(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier.fillMaxWidth().padding(bottom = 30.dp),
+        modifier
+            .fillMaxWidth()
+            .padding(bottom = 30.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -146,66 +154,46 @@ fun CardRow(vararg items: CardItem) {
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ){
         items(items.size) { index ->
-            Card(
-                shape = RoundedCornerShape(4.dp),
-                modifier = Modifier.size(180.dp)
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(items[index].imageResId),
-                        contentDescription = null,
-                        modifier = Modifier.size(120.dp).padding(top = 8.dp)
-                    )
-                    Text(
-                        text = items[index].title,
-                        style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
-                    Text(
-                        text = items[index].description,
-                        style = MaterialTheme.typography.bodyMedium,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
-                }
-            }
+            CardsItem(
+                cardItem = CardItem(items[index].imageResId, items[index].title, items[index].description)
+            )
         }
     }
 }
 
 @Composable
 fun CardsItem(
-    imageResId: Int,
-    title: String,
-    description: String,
+    cardItem: CardItem,
     modifier: Modifier = Modifier
 ){
     Card(
         modifier = modifier
-            .height(200.dp)
+            .size(180.dp)
             .clip(RoundedCornerShape(16.dp)),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
-        Column{
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(4.dp).align(Alignment.CenterHorizontally)
+        ){
             Image(
-                painter = painterResource(id = imageResId),
+                painter = painterResource(id = cardItem.imageResId),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(120.dp)
-                    .padding(top = 10.dp),
+                    .height(100.dp),
                 contentScale = ContentScale.Crop
             )
 
             Text(
-                text = title,
+                text = cardItem.title,
+                modifier = Modifier.padding(top = 4.dp),
                 style = MaterialTheme.typography.headlineMedium,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = description,
+                text = cardItem.description,
+                modifier = Modifier.padding(top = 4.dp),
                 style = MaterialTheme.typography.labelMedium,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
@@ -223,6 +211,8 @@ fun ExpandableCardsRow(
     Column(modifier = Modifier.fillMaxWidth()) {
         //CardRow(cardList.subList(0, if (expanded) cardList.size else 2))
         if (!expanded) {
+            //What if TextButton.
+            //Look on Woof
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
@@ -233,7 +223,7 @@ fun ExpandableCardsRow(
                     color = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier
                         .padding(16.dp)
-                        .clickable(onClick = { !expanded })
+                        .clickable(onClick = { expanded })
                 )
             }
         } else {
@@ -242,9 +232,7 @@ fun ExpandableCardsRow(
                 content = {
                           items(cardList){
                               CardsItem(
-                                  imageResId = it.imageResId,
-                                  title = it.title,
-                                  description = it.description
+                                  cardItem = it
                               )
                           }
                 },
@@ -257,4 +245,44 @@ fun ExpandableCardsRow(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun CommentCard(
+    comment: Comment,
+    modifier: Modifier = Modifier
+){
+    Card() {
+        Row() {
+            Icon(painter = painterResource(id = comment.userImage), contentDescription = null)
+            Column(
+                modifier.padding(8.dp)
+            ) {
+                Text(text = comment.userName)
+                Text(text = Date.from(Instant.now()).toString())
 
+                Text(
+                    text = comment.comment,
+                    maxLines = 4
+                )
+            }
+        }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun CommentColumn(vararg comments: Comment){
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ){
+        items(comments.size){ index ->
+            CommentCard(
+                comment = Comment(
+                    comments[index].userImage,
+                    comments[index].userName,
+                    comments[index].comment
+                )
+            )
+        }
+    }
+}

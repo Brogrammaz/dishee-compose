@@ -51,6 +51,11 @@ fun RecipeScreen() {
 
     var isExpanded by remember{ mutableStateOf(false) }
 
+    Scaffold(
+        bottomBar = {
+            BottomNavigation()
+        }
+    ) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -66,11 +71,10 @@ fun RecipeScreen() {
                     "This hotel is owned by Kaparo. Order healthy food here" +
                             "This hotel is owned by Kaparo. Order healthy food here" +
                             "This hotel is owned by Kaparo. Order healthy food here"
-
                 )
             }
 
-            item { 
+            item {
                 Text(text = "Popular Menu", modifier = Modifier.padding(16.dp))
             }
 
@@ -118,6 +122,8 @@ fun RecipeScreen() {
                 )
             }
         }
+    }
+
 
 }
 
@@ -129,6 +135,13 @@ val items = listOf(
     BottomNavItem("Cart", Icons.Filled.ShoppingCart),
     BottomNavItem("Messages", Icons.Default.Email)
 )
+
+@OptIn(ExperimentalFoundationApi::class)
+@Preview(showSystemUi = true)
+@Composable
+fun PostDetailsPreview(){
+    RecipeScreen()
+}
 
 /*@Preview(showSystemUi = true)
 @Composable
