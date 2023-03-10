@@ -11,7 +11,9 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,6 +27,7 @@ import com.disheecompose.data.Comment
 @Composable
 fun PostDetailsBackDrop(){
     val scaffoldState = rememberBackdropScaffoldState(BackdropValue.Revealed)
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     /*LaunchedEffect(scaffoldState) {
         scaffoldState.conceal()
     }*/
@@ -35,7 +38,11 @@ fun PostDetailsBackDrop(){
         scaffoldState = scaffoldState,
         appBar = { /*TODO*/ },
         backLayerContent = {
-            Box(modifier = Modifier.aspectRatio(16f / 9)){
+            Box(modifier = Modifier
+                .aspectRatio(16f / 9)
+                .fillMaxWidth()
+                .clip(MaterialTheme.shapes.medium)
+            ){
                 // Here you could use a video player library like ExoPlayer to display the video
                 // For simplicity, I'll use an Image composable to represent the video thumbnail
 
@@ -43,8 +50,8 @@ fun PostDetailsBackDrop(){
                     painter = painterResource(id = R.drawable.healthy_food),
                     contentDescription = "Video Thumbnail",
                     modifier = Modifier
-                        .fillMaxSize()
-                        .heightIn(min = 300.dp),
+                        .fillMaxWidth(),
+                        //.height(height),
                     contentScale = ContentScale.Crop
                 )
             }
@@ -53,7 +60,6 @@ fun PostDetailsBackDrop(){
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .heightIn(min = 500.dp)
                     .padding(16.dp)
             ) {
                 Row {
@@ -100,6 +106,12 @@ fun PostDetailsBackDrop(){
                 Text(text = "Comments")
 
                 CommentColumn(
+                    Comment(R.drawable.profilepic, "Njogu", "Whack"),
+                    Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante"),
+                    Comment(R.drawable.profilepic, "Njogu", "Whack"),
+                    Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante"),
+                    Comment(R.drawable.profilepic, "Njogu", "Whack"),
+                    Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante"),
                     Comment(R.drawable.profilepic, "Njogu", "Whack"),
                     Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante")
                 )
