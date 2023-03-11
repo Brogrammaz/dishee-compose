@@ -37,4 +37,11 @@
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_success">Success</string>
     <string name="title_activity_cart">Cart</string>
+    <string name="demo_order_description">Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt. Velit non est cillum consequat cupidatat ex Lorem laboris labore aliqua ad duis eu laborum.\n" +
+                        "\n" +
+                        "Strowberry\n" +
+                        "Cream\n" +
+                        "wheat\n" +
+                        "\n" +
+                        "Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.</string>
 </resources>

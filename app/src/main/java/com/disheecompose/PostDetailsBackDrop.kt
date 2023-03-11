@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.disheecompose.data.CardItem
 import com.disheecompose.data.Comment
+import com.disheecompose.ui.theme.DisheecomposeTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterialApi::class)
@@ -125,5 +126,7 @@ fun PostDetailsBackDrop(){
 @Preview
 @Composable
 fun PostPreview(){
-    PostDetailsBackDrop()
+    DisheecomposeTheme() {
+        PostDetailsBackDrop()
+    }
 }

@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-
+import com.disheecompose.ui.theme.DisheecomposeTheme
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -42,7 +42,9 @@ fun PaymentScreen(
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             //Text(text = "Confirm Order")
+            Spacer(modifier = modifier.padding(30.dp))
             DeliverToCard()
+            Spacer(modifier = modifier.padding(20.dp))
             PaymentMethodCard(accountNumber = "1234567890")
             Spacer(modifier = modifier.weight(1f))
             PaymentDetailsCard()
@@ -56,9 +58,7 @@ fun PaymentScreen(
 fun DeliverToCard(
     modifier: Modifier = Modifier
 ){
-    Surface(
-        modifier.padding(top = 30.dp)
-    ) {
+    Surface{
         Column(
             modifier.padding(10.dp)
         ) {
@@ -158,5 +158,7 @@ fun PaymentDetailsCard(
 @Preview
 @Composable
 fun PaymentPreview(){
-    PaymentScreen()
+    DisheecomposeTheme() {
+        PaymentScreen()
+    }
 }
