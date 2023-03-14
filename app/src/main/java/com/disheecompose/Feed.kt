@@ -41,25 +41,14 @@ class Feed : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting2("Android")
+
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting2(name: String) {
-    Text(text = "Hello $name!")
-}
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview2() {
-    DisheecomposeTheme {
-        Greeting2("Android")
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

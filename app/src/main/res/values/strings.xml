@@ -15,6 +15,20 @@
     <string name="upload_picture">Upload Your \n\nProfile Photo</string>
     <string name="upload_data">This data will be displayed in your \naccount profile for security</string>
     <string name="next">Next</string>
+
+    //Home
+    <string name="title_activity_home">Home</string>
+    <string name="find_fav_food">Find Your \n\nFavorite Food</string>
+    <string name="what_order">What do you want to order?</string>
+    <string name="deal_month">Special Deal For \nOctober</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="near_restaurant">Nearest Restaurant</string>
+    <string name="view_more">View More</string>
+    <string name="healthy_food">Healthy Food</string>
+    <string name="vegan_resto">Vegan Resto</string>
+    <string name="min_12">12 Minutes</string>
+    <string name="min_8">8 Minutes</string>
+    <string name="title_activity_post_details">PostDetails</string>
     <string name="title_activity_feed">Feed</string>
     <string name="view_post">View Post</string>
     <string name="get_started">Get Started</string>
@@ -23,6 +37,7 @@
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_success">Success</string>
     <string name="title_activity_cart">Cart</string>
+<<<<<<< HEAD
     <string name="sub_total">Sub-Total</string>
     <string name="delivery_charge">Delivery Charge</string>
     <string name="discount">Discount</string>
@@ -37,4 +52,13 @@
     <string name="upload">Upload</string>
     <string name="title_activity_add_item">AddItem</string>
     <string name="back_icon">Navigate Back Icon</string>
+=======
+    <string name="demo_order_description">Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt. Velit non est cillum consequat cupidatat ex Lorem laboris labore aliqua ad duis eu laborum.\n" +
+                        "\n" +
+                        "Strowberry\n" +
+                        "Cream\n" +
+                        "wheat\n" +
+                        "\n" +
+                        "Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.</string>
+>>>>>>> 389af5c52e373b032e60c209a4b9a06465883101
 </resources>

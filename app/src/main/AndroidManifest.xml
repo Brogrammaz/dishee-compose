@@ -75,6 +75,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Home"
+            android:exported="true"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.Disheecompose" />
+        <activity
+            android:name=".PostDetails"
+            android:exported="false"
+            android:label="@string/title_activity_post_details"
+            android:theme="@style/Theme.Disheecompose" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Disheecompose" />
