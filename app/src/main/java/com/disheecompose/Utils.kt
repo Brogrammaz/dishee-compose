@@ -2,6 +2,7 @@ package com.disheecompose
 
 import androidx.compose.ui.res.painterResource
 import com.disheecompose.models.FeedData
+import com.disheecompose.models.OrderData
 
 object Utils {
     
@@ -63,4 +64,6 @@ object Utils {
             R.drawable.tabata
         )
     )
+
+    val myOrders : List<OrderData> = listOf()
 }

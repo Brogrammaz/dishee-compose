@@ -23,4 +23,18 @@
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_success">Success</string>
     <string name="title_activity_cart">Cart</string>
+    <string name="sub_total">Sub-Total</string>
+    <string name="delivery_charge">Delivery Charge</string>
+    <string name="discount">Discount</string>
+    <string name="total">Total</string>
+    <string name="place_order">Place My Order</string>
+    <string name="add_item">Add Item</string>
+    <string name="name_title">Name</string>
+    <string name="category_title">Category</string>
+    <string name="description_title">Description</string>
+    <string name="price_title">Price</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="upload">Upload</string>
+    <string name="title_activity_add_item">AddItem</string>
+    <string name="back_icon">Navigate Back Icon</string>
 </resources>
