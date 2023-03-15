@@ -37,7 +37,7 @@
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_success">Success</string>
     <string name="title_activity_cart">Cart</string>
-<<<<<<< HEAD
+
     <string name="sub_total">Sub-Total</string>
     <string name="delivery_charge">Delivery Charge</string>
     <string name="discount">Discount</string>
@@ -52,7 +52,7 @@
     <string name="upload">Upload</string>
     <string name="title_activity_add_item">AddItem</string>
     <string name="back_icon">Navigate Back Icon</string>
-=======
+
     <string name="demo_order_description">Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt. Velit non est cillum consequat cupidatat ex Lorem laboris labore aliqua ad duis eu laborum.\n" +
                         "\n" +
                         "Strowberry\n" +
@@ -60,5 +60,5 @@
                         "wheat\n" +
                         "\n" +
                         "Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.</string>
->>>>>>> 389af5c52e373b032e60c209a4b9a06465883101
+
 </resources>
