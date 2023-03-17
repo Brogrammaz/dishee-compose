@@ -1,18 +1,10 @@
-package com.disheecompose
+package com.disheecompose.ui
 
-import android.content.res.Resources.Theme
-import android.os.Bundle
-import android.widget.Space
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -20,46 +12,81 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.disheecompose.R
+import com.disheecompose.Utils
 import com.disheecompose.models.OrderData
 import com.disheecompose.ui.theme.*
 
-class Cart : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            DisheecomposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting3("Android")
-                }
-            }
+/*
+* TODO
+*  1. Refer to PostDetailScreen to modify MyOrders and OrderCard (vararg)
+*  */
+
+@Composable
+fun CartScreen(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .padding(8.dp)
+    ) {
+        Spacer(modifier = modifier.height(5.dp))
+
+        MoveBackIcon()
+
+        MyOrders(orders = Utils.myOrders)
+
+        Spacer(modifier = modifier.weight(1f))
+
+        PlaceOrderCard()
+    }
+}
+
+@Composable
+fun MoveBackIcon(
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        shape = MaterialTheme.shapes.medium,
+        modifier = modifier
+            .padding(1.dp)
+            .size(40.dp),
+        shadowElevation =4.5.dp,
+        color = FaintPink
+    ){
+        IconButton(onClick = {
+
+        }) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(id = R.string.back_icon))
         }
     }
 }
 
 @Composable
-fun Greeting3(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview3() {
-    DisheecomposeTheme {
-        Greeting3("Android")
+fun MyOrders(
+    orders: List<OrderData>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = modifier.padding(8.dp)
+    ) {
+        items(orders) { order ->
+            OrderCard(
+                orderName = order.orderName,
+                image = painterResource(id = order.orderImg),
+                restaurant = order.restaurantName,
+                price = order.price
+            )
+        }
     }
 }
 
@@ -152,37 +179,6 @@ fun OrderCardPreview() {
             image = painterResource(id = R.drawable.soup),
             restaurant = "Mawimbi", price = 350,
         )
-    }
-}
-
-@Composable
-fun MoveBackIcon(
-    modifier: Modifier = Modifier
-) {
-   Surface(
-       shape = MaterialTheme.shapes.medium,
-       modifier = modifier
-           .padding(1.dp)
-           .size(40.dp),
-       shadowElevation =4.5.dp,
-       color = FaintPink
-   ){
-       IconButton(onClick = {
-
-       }) {
-           Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(id = R.string.back_icon))
-       }
-   } 
-}
-
-@Preview(
-    "Move Back Icon Preview",
-    showBackground = true
-)
-@Composable
-fun MoveBackIconPreview() {
-    DisheecomposeTheme {
-        MoveBackIcon()
     }
 }
 
@@ -291,44 +287,6 @@ fun PlaceOrderPreview() {
 
     DisheecomposeTheme {
         PlaceOrderCard(subTotal = 1200, deliveryFee = 100, discount = 200, totals = 1500)
-    }
-}
-
-@Composable
-fun MyOrders(
-    orders: List<OrderData>,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = modifier.padding(8.dp)
-    ) {
-        items(orders) { order ->
-            OrderCard(
-                orderName = order.orderName,
-                image = painterResource(id = order.orderImg),
-                restaurant = order.restaurantName,
-                price = order.price
-            )
-        }
-    }
-}
-
-@Composable
-fun CartScreen(
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-            .padding(8.dp)
-    ) {
-        Spacer(modifier = modifier.height(5.dp))
-
-        MoveBackIcon()
-
-        MyOrders(orders = Utils.myOrders)
-
-        PlaceOrderCard()
     }
 }
 
