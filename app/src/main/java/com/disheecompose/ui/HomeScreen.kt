@@ -46,7 +46,7 @@ fun HomeScreen(modifier: Modifier = Modifier){
     ) {
         Column(
             modifier = modifier
-                .padding(16.dp)
+                //.padding(16.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -143,7 +143,9 @@ fun NearestRestaurantArea(
 ){
     Column {
         Row(
-            modifier.fillMaxWidth().padding(bottom = 10.dp)
+            modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
         ) {
             Text(text = stringResource(id = R.string.near_restaurant))
             Spacer(modifier = modifier.weight(1f))

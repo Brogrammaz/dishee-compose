@@ -2,11 +2,12 @@
     <string name="app_name">dishee-compose</string>
     <string name="dishee">Dishee</string>
     <string name="title_activity_login">Login</string>
+    <string name="login">Login</string>
     <string name="welcome_dishee">Welcome to Dishee</string>
     <string name="login_details">Enter your details to Log in</string>
     <string name="recover_password">Recover password</string>
-    <string name="email_login">Email</string>
-    <string name="pass_login">Password</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
     <string name="sign_in">Sign in</string>
     <string name="continue_with">----- Or Continue with -----</string>
     <string name="no_account">You do not have an account?</string>
@@ -15,6 +16,17 @@
     <string name="upload_picture">Upload Your \n\nProfile Photo</string>
     <string name="upload_data">This data will be displayed in your \naccount profile for security</string>
     <string name="next">Next</string>
+
+    <string name="create_account">Create An Account</string>
+    <string name="register_details">Enter details to Register</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_pass">Confirm Password</string>
+    <string name="terms_conditions">By creating an account you agree to the
+        Terms and Conditions including or privacy
+        policy 
+    </string>
+    <string name="have_account">Already have an account?</string>
 
     //Home
     <string name="title_activity_home">Home</string>
