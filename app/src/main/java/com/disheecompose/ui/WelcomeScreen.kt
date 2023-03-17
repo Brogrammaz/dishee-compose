@@ -26,7 +26,6 @@ import kotlinx.coroutines.delay
 fun WelcomeScreen(modifier: Modifier = Modifier) {
     Column (
         modifier
-            .padding(16.dp)
             .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -31,7 +32,10 @@ import com.disheecompose.ui.theme.DisheecomposeTheme
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier){
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    onRestaurantOnClick: () -> Unit = {}
+){
 
     val focusManager = LocalFocusManager.current
 
@@ -46,7 +50,7 @@ fun HomeScreen(modifier: Modifier = Modifier){
     ) {
         Column(
             modifier = modifier
-                //.padding(16.dp)
+                .padding(16.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -103,7 +107,9 @@ fun HomeScreen(modifier: Modifier = Modifier){
 
             SpecialDealCard(imageRes = R.drawable.profilepic)
 
-            NearestRestaurantArea()
+            NearestRestaurantArea(
+                onRestaurantOnClick = onRestaurantOnClick
+            )
         }
     }
 
@@ -139,7 +145,8 @@ fun SpecialDealCard(
 
 @Composable
 fun NearestRestaurantArea(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onRestaurantOnClick: () -> Unit = {}
 ){
     Column {
         Row(
@@ -157,13 +164,15 @@ fun NearestRestaurantArea(
             NearRestaurantCard(
                 imageRes = R.drawable.healthy_food,
                 restaurantName = R.string.healthy_food,
-                distance = R.string.min_12
+                distance = R.string.min_12,
+                onRestaurantOnClick = onRestaurantOnClick
             )
             Spacer(modifier = modifier.weight(1f))
             NearRestaurantCard(
                 imageRes = R.drawable.vegan_resto,
                 restaurantName = R.string.vegan_resto,
-                distance = R.string.min_8
+                distance = R.string.min_8,
+                onRestaurantOnClick = onRestaurantOnClick
             )
         }
     }
@@ -174,12 +183,14 @@ fun NearRestaurantCard(
     modifier: Modifier = Modifier,
     @DrawableRes imageRes: Int,
     @StringRes restaurantName: Int,
-    @StringRes distance: Int
+    @StringRes distance: Int,
+    onRestaurantOnClick: () -> Unit = {}
 ){
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(4.dp))
             .size(180.dp)
+            .clickable(onClick = onRestaurantOnClick)
     ) {
         Column(
             modifier.fillMaxSize(),

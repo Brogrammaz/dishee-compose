@@ -156,13 +156,17 @@ fun CardRow(
 }*/
 
 @Composable
-fun CardRow(vararg items: CardItem) {
+fun CardRow(
+    vararg items: CardItem,
+    onOrderClick: () -> Unit = {}
+) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ){
         items(items.size) { index ->
             CardsItem(
-                cardItem = CardItem(items[index].imageResId, items[index].title, items[index].description)
+                cardItem = CardItem(items[index].imageResId, items[index].title, items[index].description),
+                onOrderClick = onOrderClick
             )
         }
     }
@@ -171,12 +175,14 @@ fun CardRow(vararg items: CardItem) {
 @Composable
 fun CardsItem(
     cardItem: CardItem,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onOrderClick: () -> Unit = {}
 ){
     Card(
         modifier = modifier
             .size(180.dp)
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onOrderClick),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
         Column(

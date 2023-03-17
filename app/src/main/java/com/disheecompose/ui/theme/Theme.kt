@@ -2,6 +2,7 @@ package com.disheecompose.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -45,6 +46,7 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DisheecomposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

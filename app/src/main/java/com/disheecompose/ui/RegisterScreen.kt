@@ -56,7 +56,7 @@ fun RegisterScreen(
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = 30.dp),
+            .padding(16.dp),
         verticalArrangement = Arrangement.SpaceAround
     ){
         Text(
@@ -144,7 +144,7 @@ fun RegisterScreen(
         }
         Button(
             onClick = onRegisterButtonClicked,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 30.dp)
         ) {
             Text(text = stringResource(id = R.string.register))
         }

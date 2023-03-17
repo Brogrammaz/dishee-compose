@@ -21,7 +21,9 @@ import com.disheecompose.R
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun OrderDetailScreen(){
+fun OrderDetailScreen(
+    onAddToCartClick: () -> Unit
+){
     val scaffoldState = rememberBackdropScaffoldState(BackdropValue.Revealed)
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     val layoutDirection = LocalLayoutDirection.current
@@ -90,7 +92,7 @@ fun OrderDetailScreen(){
                 .align(Alignment.BottomEnd)
                 .padding(start = 16.dp, end = 16.dp, bottom = 100.dp),
             text = { Text("Add To Cart") },
-            onClick = { /* Handle the button click here */ },
+            onClick = onAddToCartClick,
         )
     }
 
@@ -104,5 +106,7 @@ fun OrderDescription(description: String){
 @Preview
 @Composable
 fun OrderPreview(){
-    OrderDetailScreen()
+    OrderDetailScreen(
+        onAddToCartClick = {}
+    )
 }

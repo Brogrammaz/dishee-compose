@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">dishee-compose</string>
+    <string name="app_name">Dishee</string>
     <string name="dishee">Dishee</string>
     <string name="title_activity_login">Login</string>
     <string name="login">Login</string>

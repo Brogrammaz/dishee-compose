@@ -24,7 +24,6 @@ fun UploadPictureScreen(
     }*/
     Column (
         modifier = Modifier
-            .padding(16.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
