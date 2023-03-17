@@ -1,10 +1,6 @@
-package com.disheecompose
+package com.disheecompose.ui
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.widget.Space
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -28,24 +24,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.disheecompose.BottomNavigation
+import com.disheecompose.R
 import com.disheecompose.ui.theme.DisheecomposeTheme
-
-class Home : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            DisheecomposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    HomeScreen()
-                }
-            }
-        }
-    }
-}
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,6 +47,8 @@ fun HomeScreen(modifier: Modifier = Modifier){
         Column(
             modifier = modifier
                 .padding(16.dp)
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
             Row(
@@ -158,9 +141,9 @@ fun SpecialDealCard(
 fun NearestRestaurantArea(
     modifier: Modifier = Modifier
 ){
-    Column() {
+    Column {
         Row(
-            modifier.fillMaxWidth()
+            modifier.fillMaxWidth().padding(bottom = 10.dp)
         ) {
             Text(text = stringResource(id = R.string.near_restaurant))
             Spacer(modifier = modifier.weight(1f))
@@ -196,8 +179,13 @@ fun NearRestaurantCard(
             .clip(RoundedCornerShape(4.dp))
             .size(180.dp)
     ) {
-        Column() {
+        Column(
+            modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
             Image(
+                modifier = modifier.size(80.dp),
                 painter = painterResource(id = imageRes),
                 contentDescription = null
             )

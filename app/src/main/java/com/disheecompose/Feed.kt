@@ -71,11 +71,18 @@ fun FeedScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun FeedPage(modifier: Modifier, posts: List<FeedData>) {
+fun FeedPage(
+    modifier: Modifier = Modifier,
+    posts: List<FeedData>
+) {
 
     LazyColumn(modifier = modifier.padding(4.dp)) {
         items(posts) { post ->
-            Post(companyName = "", caption = "", feedImg = painterResource(id = R.drawable.tabata))
+            Post(
+                companyName = "",
+                caption = "",
+                feedImg = painterResource(id = R.drawable.tabata)
+            )
         }
     }
 }

@@ -1,10 +1,7 @@
-package com.disheecompose
+package com.disheecompose.ui
 
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -26,27 +23,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.disheecompose.R
 import com.disheecompose.ui.theme.DisheecomposeTheme
 
-class Login : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            DisheecomposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    LoginScreen()
-                }
-            }
-        }
-    }
-}
-
 @Composable
-fun LoginScreen(){
+fun LoginScreen(
+    onSignupButtonClicked: () -> Unit = {},
+    onRegisterTextButtonClicked: () -> Unit = {}
+){
     val focusManager = LocalFocusManager.current
 
     var email by remember {
@@ -110,7 +94,7 @@ fun LoginScreen(){
         )
         Spacer(modifier = Modifier.weight(1f))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onSignupButtonClicked,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
             Text(text = stringResource(id = R.string.sign_in))
@@ -124,10 +108,14 @@ fun LoginScreen(){
         Spacer(modifier = Modifier.weight(1f))
         SocialMediaIcons()
         Spacer(modifier = Modifier.weight(1f))
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(text = stringResource(id = R.string.no_account))
             Spacer(modifier = Modifier.weight(1f))
-            Text(text = stringResource(id = R.string.register))
+            TextButton(onClick =  onRegisterTextButtonClicked) {
+                Text(text = stringResource(id = R.string.register))
+            }
         }
         Spacer(modifier = Modifier.weight(1f))
     }

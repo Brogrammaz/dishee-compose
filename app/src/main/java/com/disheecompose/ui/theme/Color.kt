@@ -6,12 +6,10 @@ val  Green8B = Color(0xFF53E88B)
 val ThemeGreen = Color(0xFF4CD964)
 val IconGreen = Color(0xFFCDFFE0)
 val TextBlack = Color(0xFF09051C)
-<<<<<<< HEAD
+
 val FaintText = Color(0xFF3B3B3B)
 val FaintPink = Color(0xFFF9A84D)
-=======
 
->>>>>>> 389af5c52e373b032e60c209a4b9a06465883101
 
 //Light Theme
 val ThemeWhite = Color(0xFFFEFEFF)

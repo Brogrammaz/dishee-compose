@@ -1,14 +1,9 @@
-package com.disheecompose
+package com.disheecompose.ui
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -23,51 +18,36 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.disheecompose.R
 import com.disheecompose.ui.theme.DisheecomposeTheme
 import kotlinx.coroutines.delay
 
-class Welcome : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            DisheecomposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-//                    Greeting3("Android")
-                }
-            }
-        }
-    }
-}
-
-
 @Composable
-fun AppNameDesign(modifier: Modifier = Modifier) {
-    Box(
+fun WelcomeScreen(modifier: Modifier = Modifier) {
+    Column (
         modifier
-            .size(50.dp)
-            .clip(CircleShape)
-            .background(Color.Blue),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = stringResource(id = R.string.dishee),
-            color = Color.White
-        )
+            .padding(16.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ){
+        Box(
+            modifier
+                .size(150.dp)
+                .clip(CircleShape)
+                .background(Color.Blue),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = stringResource(id = R.string.dishee),
+                color = Color.White
+            )
+        }
+        Spacer(modifier = modifier.height(40.dp))
+        LoadingDotsAnimation()
     }
 }
 
-@Preview(
-    name = "App Name Design Preview",
-    showBackground = true
-)
-@Composable
-fun AppNameDesignPreview() {
-    AppNameDesign()
-}
 
 /**
 * Define a loading dots Animation for the welcome splash screen.
@@ -157,6 +137,15 @@ fun LoadingDotsAnimation(
 
     }
 
+}
+
+@Preview(
+    name = "App Name Design Preview",
+    showBackground = true
+)
+@Composable
+fun AppNameDesignPreview() {
+    WelcomeScreen()
 }
 
 @Preview(
