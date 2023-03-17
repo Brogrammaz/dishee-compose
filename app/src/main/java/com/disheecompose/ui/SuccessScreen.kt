@@ -28,7 +28,6 @@ fun SuccessScreen(
     Column(
         modifier = modifier
             .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly

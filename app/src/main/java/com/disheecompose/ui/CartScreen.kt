@@ -32,7 +32,8 @@ import com.disheecompose.ui.theme.*
 
 @Composable
 fun CartScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onPlaceOrderClick: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -46,7 +47,7 @@ fun CartScreen(
 
         Spacer(modifier = modifier.weight(1f))
 
-        PlaceOrderCard()
+        PlaceOrderCard(onPlaceOrderClick = onPlaceOrderClick)
     }
 }
 
@@ -188,7 +189,8 @@ fun PlaceOrderCard(
     subTotal: Int = 0,
     deliveryFee: Int = 0,
     discount: Int = 0,
-    totals: Int = 0
+    totals: Int = 0,
+    onPlaceOrderClick: () -> Unit
 ) {
     Surface(
         shape = MaterialTheme.shapes.medium,
@@ -265,7 +267,7 @@ fun PlaceOrderCard(
             Spacer(modifier = modifier.height(10.dp))
 
             Button(
-                onClick = { },
+                onClick =  onPlaceOrderClick,
                 modifier
                     .fillMaxWidth()
                     .padding(5.dp),
@@ -280,23 +282,14 @@ fun PlaceOrderCard(
 }
 
 @Preview(
-    name = "Place Order Card Preview",
-)
-@Composable
-fun PlaceOrderPreview() {
-
-    DisheecomposeTheme {
-        PlaceOrderCard(subTotal = 1200, deliveryFee = 100, discount = 200, totals = 1500)
-    }
-}
-
-@Preview(
     "Cart Screen preview",
     showBackground = true
 )
 @Composable
 fun CartScreenPreview() {
     DisheecomposeTheme {
-        CartScreen()
+        CartScreen(
+            onPlaceOrderClick = {}
+        )
     }
 }

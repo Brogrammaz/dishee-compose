@@ -2,6 +2,7 @@ package com.disheecompose.ui
 
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.graphics.drawable.Icon
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -24,12 +25,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.disheecompose.R
+import com.disheecompose.ui.components.OutlinedTextFieldSample
 import com.disheecompose.ui.theme.DisheecomposeTheme
 
 @Composable
 fun LoginScreen(
-    onSignupButtonClicked: () -> Unit = {},
-    onRegisterTextButtonClicked: () -> Unit = {}
+    onSignupButtonClicked: () -> Unit,
+    onRegisterTextButtonClicked: () -> Unit
 ){
     val focusManager = LocalFocusManager.current
 
@@ -63,7 +65,7 @@ fun LoginScreen(
         OutlinedTextFieldSample(
             value = email,
             onValueChange = {email = it},
-            label = R.string.email_login,
+            label = R.string.email,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
@@ -76,7 +78,7 @@ fun LoginScreen(
         OutlinedTextFieldSample(
             value = password,
             onValueChange = { password = it},
-            label = R.string.pass_login,
+            label = R.string.pass,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Done
@@ -136,32 +138,11 @@ fun LoginScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            LoginScreen()
+            LoginScreen(onSignupButtonClicked = { /*TODO*/ }, onRegisterTextButtonClicked = {})
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun OutlinedTextFieldSample(
-    value: String,
-    onValueChange: (String) -> Unit,
-    @StringRes label: Int,
-    keyboardOptions:KeyboardOptions,
-    keyboardActions: KeyboardActions,
-    modifier: Modifier = Modifier
-){
-    
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = { Text(text = stringResource(id = label))},
-        singleLine = true,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        modifier = modifier.fillMaxWidth()
-    )
-}
 
 @Composable
 fun SocialMediaIcons(){
