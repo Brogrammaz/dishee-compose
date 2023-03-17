@@ -1,4 +1,4 @@
-package com.disheecompose
+package com.disheecompose.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding

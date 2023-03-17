@@ -1,7 +1,6 @@
-package com.disheecompose
+package com.disheecompose.ui.components
 
 import android.os.Build
-import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -15,6 +14,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -25,9 +25,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.disheecompose.R
 import com.disheecompose.data.CardItem
 import com.disheecompose.data.Comment
 import java.time.Instant
@@ -57,21 +57,28 @@ fun RestaurantRating(
 }
 
 @Composable
-fun VideoSection(@DrawableRes videoUrl: Int, description: String){
+fun RestaurantDetails(restaurantName: String, description: String){
     Column (modifier = Modifier.fillMaxWidth()){
-        Box(modifier = Modifier.aspectRatio(16f / 9)){
-            // Here you could use a video player library like ExoPlayer to display the video
-            // For simplicity, I'll use an Image composable to represent the video thumbnail
-
-            Image(
-                painter = painterResource(id = videoUrl),
-                contentDescription = "Video Thumbnail",
-                modifier = Modifier
-                    .fillMaxSize()
-                    .heightIn(min = 300.dp),
-                contentScale = ContentScale.Crop
-            )
+        Row {
+            androidx.compose.material.Card {
+                androidx.compose.material.Text(text = "Popular")
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            androidx.compose.material.Icon(Icons.Default.LocationOn, contentDescription = null)
+            androidx.compose.material.Icon(Icons.Filled.Favorite, contentDescription = null)
         }
+
+        androidx.compose.material.Text(text = restaurantName)
+        androidx.compose.material.Text(
+            text = "6 star hotel",
+            style = androidx.compose.material.MaterialTheme.typography.body1,
+            modifier = Modifier
+                .padding(16.dp)
+                .wrapContentHeight(),
+            maxLines = 6,
+            overflow = TextOverflow.Ellipsis
+        )
+
         Text(
             text = description,
             style = MaterialTheme.typography.bodyMedium,

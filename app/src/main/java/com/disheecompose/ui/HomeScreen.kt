@@ -24,7 +24,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.disheecompose.BottomNavigation
+import com.disheecompose.ui.components.BottomNavigation
 import com.disheecompose.R
 import com.disheecompose.ui.theme.DisheecomposeTheme
 

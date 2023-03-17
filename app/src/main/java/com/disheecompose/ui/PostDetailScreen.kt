@@ -1,14 +1,10 @@
-package com.disheecompose
+package com.disheecompose.ui
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,17 +12,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.disheecompose.R
 import com.disheecompose.data.CardItem
 import com.disheecompose.data.Comment
+import com.disheecompose.ui.components.CardRow
+import com.disheecompose.ui.components.CommentColumn
+import com.disheecompose.ui.components.RestaurantDetails
 import com.disheecompose.ui.theme.DisheecomposeTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PostDetailsBackDrop(){
+fun PostDetailScreen(){
     val scaffoldState = rememberBackdropScaffoldState(BackdropValue.Revealed)
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     /*LaunchedEffect(scaffoldState) {
@@ -63,27 +62,11 @@ fun PostDetailsBackDrop(){
                     .fillMaxWidth()
                     .padding(16.dp)
             ) {
-                Row {
-                    Card {
-                        Text(text = "Popular")
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-                    Icon(Icons.Default.LocationOn, contentDescription = null)
-                    Icon(Icons.Filled.Favorite, contentDescription =null)
-                }
-
-
-                Text(text = stringResource(id = R.string.vegan_resto))
-                Text(
-                    text = "6 star hotel",
-                    style = MaterialTheme.typography.body1,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .wrapContentHeight(),
-                    maxLines = 6,
-                    overflow = TextOverflow.Ellipsis
-                )
-
+                RestaurantDetails(
+                    restaurantName = stringResource(id = R.string.vegan_resto),
+                    description = "This hotel is owned by Kaparo. Order healthy food here" +
+                        "This hotel is owned by Kaparo. Order healthy food here" +
+                        "This hotel is owned by Kaparo. Order healthy food here")
 
                 Row {
                     Text(text = "Popular Menu", modifier = Modifier.padding(16.dp))
@@ -127,6 +110,6 @@ fun PostDetailsBackDrop(){
 @Composable
 fun PostPreview(){
     DisheecomposeTheme() {
-        PostDetailsBackDrop()
+        PostDetailScreen()
     }
 }
