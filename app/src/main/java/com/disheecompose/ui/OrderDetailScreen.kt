@@ -1,9 +1,7 @@
-package com.disheecompose
+package com.disheecompose.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -19,10 +17,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.disheecompose.R
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun OrderDetailBackDrop(){
+fun OrderDetailScreen(){
     val scaffoldState = rememberBackdropScaffoldState(BackdropValue.Revealed)
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     val layoutDirection = LocalLayoutDirection.current
@@ -105,5 +104,5 @@ fun OrderDescription(description: String){
 @Preview
 @Composable
 fun OrderPreview(){
-    OrderDetailBackDrop()
+    OrderDetailScreen()
 }
