@@ -58,14 +58,14 @@ fun RestaurantRating(
 
 @Composable
 fun RestaurantDetails(restaurantName: String, description: String){
-    Column (modifier = Modifier.fillMaxWidth()){
+    Column (modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)){
         Row {
             androidx.compose.material.Card {
                 androidx.compose.material.Text(text = "Popular")
             }
             Spacer(modifier = Modifier.weight(1f))
             androidx.compose.material.Icon(Icons.Default.LocationOn, contentDescription = null)
-            androidx.compose.material.Icon(Icons.Filled.Favorite, contentDescription = null)
+            androidx.compose.material.Icon(Icons.Filled.Favorite, contentDescription = null, tint = Color.Red)
         }
 
         androidx.compose.material.Text(text = restaurantName)
@@ -73,7 +73,7 @@ fun RestaurantDetails(restaurantName: String, description: String){
             text = "6 star hotel",
             style = androidx.compose.material.MaterialTheme.typography.body1,
             modifier = Modifier
-                .padding(16.dp)
+                .padding(start = 16.dp, end = 16.dp)
                 .wrapContentHeight(),
             maxLines = 6,
             overflow = TextOverflow.Ellipsis
@@ -83,9 +83,9 @@ fun RestaurantDetails(restaurantName: String, description: String){
             text = description,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
-                .padding(16.dp)
+                .padding(start = 16.dp, end = 16.dp)
                 .wrapContentHeight(),
-            maxLines = 6,
+            maxLines = 5,
             overflow = TextOverflow.Ellipsis
         )
         Row(

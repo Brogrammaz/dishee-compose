@@ -1,5 +1,7 @@
 package com.disheecompose.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -60,8 +62,7 @@ fun MoveBackIcon(
         modifier = modifier
             .padding(1.dp)
             .size(40.dp),
-        shadowElevation =4.5.dp,
-        color = FaintPink
+        shadowElevation =4.5.dp
     ){
         IconButton(onClick = {
 
@@ -112,8 +113,7 @@ fun OrderCard(
         shape = MaterialTheme.shapes.small,
         modifier = modifier
             .padding(5.dp)
-            .fillMaxWidth(),
-
+            .fillMaxWidth()
         ) {
         Row(
             modifier.fillMaxWidth(),
@@ -134,8 +134,8 @@ fun OrderCard(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(text = orderName, fontSize = 15.sp)
-                Text(text = restaurant, fontSize = 10.sp, color = FaintText)
-                Text(text = "Ksh $price", fontSize = 20.sp, color = Green8B)
+                Text(text = restaurant, fontSize = 10.sp)
+                Text(text = "Ksh $price", fontSize = 20.sp)
             }
 
             Row(
@@ -168,6 +168,7 @@ fun OrderCard(
 
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
     name = "Order Card Preview",
     showBackground = true
@@ -192,13 +193,11 @@ fun PlaceOrderCard(
     totals: Int = 0,
     onPlaceOrderClick: () -> Unit
 ) {
-    Surface(
+    Card(
         shape = MaterialTheme.shapes.medium,
         modifier = modifier.padding(5.dp)
     ) {
         Column(
-            modifier
-                .background(Green8B),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
@@ -209,12 +208,10 @@ fun PlaceOrderCard(
                 Text(
                     text = stringResource(id = R.string.sub_total),
                     fontSize = 15.sp,
-                    color = ThemeWhite,
                     modifier = modifier.padding(top = 10.dp)
                 )
                 Text(
                     text = "$subTotal",
-                    color = ThemeWhite,
                     modifier = modifier.padding(top = 10.dp)
                 )
             }
@@ -228,10 +225,9 @@ fun PlaceOrderCard(
             ) {
                 Text(
                     text = stringResource(id = R.string.delivery_charge),
-                    fontSize = 15.sp,
-                    color = ThemeWhite
+                    fontSize = 15.sp
                 )
-                Text(text = "$deliveryFee", color = ThemeWhite)
+                Text(text = "$deliveryFee")
             }
 
             Spacer(modifier = modifier.height(5.dp))
@@ -244,9 +240,8 @@ fun PlaceOrderCard(
                 Text(
                     text = stringResource(id = R.string.discount),
                     fontSize = 15.sp,
-                    color = ThemeWhite
                 )
-                Text(text = "$discount", color = ThemeWhite)
+                Text(text = "$discount")
             }
 
             Spacer(modifier = modifier.height(5.dp))
@@ -259,9 +254,8 @@ fun PlaceOrderCard(
                 Text(
                     text = stringResource(id = R.string.total),
                     fontSize = 15.sp,
-                    color = ThemeWhite
                 )
-                Text(text = "Ksh $totals", color = ThemeWhite)
+                Text(text = "Ksh $totals")
             }
 
             Spacer(modifier = modifier.height(10.dp))
@@ -272,15 +266,15 @@ fun PlaceOrderCard(
                     .fillMaxWidth()
                     .padding(5.dp),
                 shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.buttonColors(White)
             ) {
-                Text(text = stringResource(id = R.string.place_order), color = Green8B)
+                Text(text = stringResource(id = R.string.place_order))
             }
         }
     }
 
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
     "Cart Screen preview",
     showBackground = true

@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -74,7 +75,8 @@ fun PostDetailScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     RestaurantDetails(
                         restaurantName = stringResource(id = R.string.vegan_resto),
@@ -85,7 +87,6 @@ fun PostDetailScreen(
                     Row {
                         Text(text = "Popular Menu", )
                         Spacer(modifier = Modifier.weight(1f))
-                        Text(text = "View All")
                     }
 
                     CardRow(

@@ -1,6 +1,8 @@
 package com.disheecompose.ui
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -57,7 +59,9 @@ fun PaymentScreen(
 fun DeliverToCard(
     modifier: Modifier = Modifier
 ){
-    Surface{
+    Surface(
+        shadowElevation = 10.dp
+    ){
         Column(
             modifier.padding(10.dp)
         ) {
@@ -90,9 +94,12 @@ fun PaymentMethodCard(
     modifier: Modifier = Modifier,
     accountNumber: String
 ){
-    Surface {
+    Surface(
+        shadowElevation = 10.dp
+    ) {
         Column (
-            modifier.padding(10.dp)
+            modifier.padding(10.dp),
+
         ){
             Row (
                 verticalAlignment = Alignment.CenterVertically
@@ -154,6 +161,7 @@ fun PaymentDetailsCard(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun PaymentPreview(){

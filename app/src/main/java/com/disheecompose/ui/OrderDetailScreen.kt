@@ -66,7 +66,8 @@ fun OrderDetailScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .padding(16.dp)
-                                .height(height)
+                                .height(height),
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
                             Row {
                                 Card {
