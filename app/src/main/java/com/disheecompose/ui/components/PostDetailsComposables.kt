@@ -61,17 +61,23 @@ fun RestaurantDetails(restaurantName: String, description: String){
     Column (modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)){
         Row {
             androidx.compose.material.Card {
-                androidx.compose.material.Text(text = "Popular")
+                androidx.compose.material.Text(
+                    text = "Popular",
+                    style = MaterialTheme.typography.labelSmall
+                )
             }
             Spacer(modifier = Modifier.weight(1f))
             androidx.compose.material.Icon(Icons.Default.LocationOn, contentDescription = null)
             androidx.compose.material.Icon(Icons.Filled.Favorite, contentDescription = null, tint = Color.Red)
         }
 
-        androidx.compose.material.Text(text = restaurantName)
+        Text(
+            text = restaurantName,
+            style = MaterialTheme.typography.titleSmall
+        )
         androidx.compose.material.Text(
             text = "6 star hotel",
-            style = androidx.compose.material.MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
                 .wrapContentHeight(),
@@ -81,7 +87,7 @@ fun RestaurantDetails(restaurantName: String, description: String){
 
         Text(
             text = description,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodySmall,
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
                 .wrapContentHeight(),
@@ -165,7 +171,7 @@ fun CardRow(
     ){
         items(items.size) { index ->
             CardsItem(
-                cardItem = CardItem(items[index].imageResId, items[index].title, items[index].description),
+                cardItem = CardItem(items[index].imageResId, items[index].title, items[index].price),
                 onOrderClick = onOrderClick
             )
         }
@@ -200,14 +206,14 @@ fun CardsItem(
             Text(
                 text = cardItem.title,
                 modifier = Modifier.padding(top = 4.dp),
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.labelLarge,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = cardItem.description,
+                text = cardItem.price,
                 modifier = Modifier.padding(top = 4.dp),
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelSmall,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
@@ -270,11 +276,18 @@ fun CommentCard(
             Column(
                 modifier.padding(8.dp)
             ) {
-                Text(text = comment.userName)
-                Text(text = Date.from(Instant.now()).toString())
+                Text(
+                    text = comment.userName,
+                    style = MaterialTheme.typography.labelLarge
+                )
+                Text(
+                    text = Date.from(Instant.now()).toString(),
+                    style = MaterialTheme.typography.labelSmall
+                )
 
                 Text(
                     text = comment.comment,
+                    style = MaterialTheme.typography.labelMedium,
                     maxLines = 4
                 )
             }

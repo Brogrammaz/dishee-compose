@@ -49,7 +49,7 @@ fun CartScreen(
 
         Spacer(modifier = modifier.weight(1f))
 
-        PlaceOrderCard(onPlaceOrderClick = onPlaceOrderClick)
+        PaymentDetailsCard(onPlaceOrderClick = onPlaceOrderClick)
     }
 }
 
@@ -133,9 +133,9 @@ fun OrderCard(
                     .defaultMinSize(minWidth = 100.dp, minHeight = 90.dp),
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
-                Text(text = orderName, fontSize = 15.sp)
-                Text(text = restaurant, fontSize = 10.sp)
-                Text(text = "Ksh $price", fontSize = 20.sp)
+                Text(text = orderName, style = MaterialTheme.typography.labelLarge)
+                Text(text = restaurant, style = MaterialTheme.typography.labelSmall)
+                Text(text = "Ksh $price", style = MaterialTheme.typography.labelMedium)
             }
 
             Row(
@@ -185,94 +185,45 @@ fun OrderCardPreview() {
 }
 
 @Composable
-fun PlaceOrderCard(
+fun PaymentDetailsCard(
     modifier: Modifier = Modifier,
-    subTotal: Int = 0,
-    deliveryFee: Int = 0,
-    discount: Int = 0,
-    totals: Int = 0,
     onPlaceOrderClick: () -> Unit
-) {
-    Card(
-        shape = MaterialTheme.shapes.medium,
-        modifier = modifier.padding(5.dp)
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.sub_total),
-                    fontSize = 15.sp,
-                    modifier = modifier.padding(top = 10.dp)
-                )
-                Text(
-                    text = "$subTotal",
-                    modifier = modifier.padding(top = 10.dp)
-                )
+){
+    Card() {
+        Column (
+            modifier.padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp    )
+        ){
+            Row() {
+                Text(text = "Sub-Total", style = MaterialTheme.typography.labelSmall)
+                Spacer(modifier.weight(1f))
+                Text(text = "1200", style = MaterialTheme.typography.labelSmall)
             }
-
-            Spacer(modifier = modifier.height(5.dp))
-
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.delivery_charge),
-                    fontSize = 15.sp
-                )
-                Text(text = "$deliveryFee")
+            Row() {
+                Text(text = "Delivery Charge", style = MaterialTheme.typography.labelSmall)
+                Spacer(modifier.weight(1f))
+                Text(text = "100", style = MaterialTheme.typography.labelSmall)
             }
-
-            Spacer(modifier = modifier.height(5.dp))
-
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.discount),
-                    fontSize = 15.sp,
-                )
-                Text(text = "$discount")
+            Row() {
+                Text(text = "Discount", style = MaterialTheme.typography.labelSmall)
+                Spacer(modifier.weight(1f))
+                Text(text = "200", style = MaterialTheme.typography.labelSmall)
             }
-
-            Spacer(modifier = modifier.height(5.dp))
-
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.total),
-                    fontSize = 15.sp,
-                )
-                Text(text = "Ksh $totals")
+            Row() {
+                Text(text = "Total", style = MaterialTheme.typography.labelMedium)
+                Spacer(modifier.weight(1f))
+                Text(text = "Kshs 1500", style = MaterialTheme.typography.labelMedium)
             }
-
-            Spacer(modifier = modifier.height(10.dp))
-
             Button(
-                onClick =  onPlaceOrderClick,
-                modifier
-                    .fillMaxWidth()
-                    .padding(5.dp),
-                shape = MaterialTheme.shapes.medium,
+                onClick = onPlaceOrderClick,
+                modifier.fillMaxWidth()
             ) {
-                Text(text = stringResource(id = R.string.place_order))
+                Text(text = "Place My Order", style = MaterialTheme.typography.labelLarge)
             }
         }
     }
-
 }
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview(

@@ -85,7 +85,7 @@ fun PostDetailScreen(
                                 "This hotel is owned by Kaparo. Order healthy food here")
 
                     Row {
-                        Text(text = "Popular Menu", )
+                        Text(text = "Popular Menu", style = androidx.compose.material3.MaterialTheme.typography.labelMedium)
                         Spacer(modifier = Modifier.weight(1f))
                     }
 
@@ -93,17 +93,20 @@ fun PostDetailScreen(
                         CardItem(
                             R.drawable.healthy_food,
                             "Special 1",
-                            "Description for Special 1"
+                            "Ksh 750"
                         ),
                         CardItem(
                             R.drawable.vegan_resto,
                             "Special 2",
-                            "Description for Special 2"
+                            "Ksh 370"
                         ),
                         onOrderClick = onOrderClick
                     )
 
-                    Text(text = "Comments")
+                    Text(
+                        text = "Comments",
+                        style = androidx.compose.material3.MaterialTheme.typography.labelMedium
+                    )
 
                     CommentColumn(
                         Comment(R.drawable.profilepic, "Njogu", "Whack"),

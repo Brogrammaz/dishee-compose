@@ -104,7 +104,6 @@ fun DisheeComposeTheme2(darkTheme: Boolean = isSystemInDarkTheme(), content: @Co
 
     androidx.compose.material.MaterialTheme(
         colors = colors,
-        typography = Typography2,
         content = content
     )
 }

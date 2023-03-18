@@ -1,8 +1,11 @@
 package com.disheecompose.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,6 +39,7 @@ fun UploadPictureScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
     name = "Upload Picture Preview",
     showBackground = true,
@@ -72,13 +76,14 @@ fun UserUpload(
         )
         Text(
             text = stringResource(id = R.string.upload_data),
-            modifier = modifier.align(Alignment.CenterHorizontally)
+            modifier = modifier.align(Alignment.CenterHorizontally),
+            style = MaterialTheme.typography.bodyMedium
         )
         Button(
             onClick = onNextButtonClicked,
             modifier = modifier.align(Alignment.CenterHorizontally)
         ) {
-            Text(text = stringResource(id = R.string.next))
+            Text(text = stringResource(id = R.string.next), style = MaterialTheme.typography.labelLarge)
         }
     }
 }

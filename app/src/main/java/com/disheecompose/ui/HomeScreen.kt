@@ -1,7 +1,9 @@
 package com.disheecompose.ui
 
 import android.annotation.SuppressLint
+import android.os.Build
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -61,7 +63,7 @@ fun HomeScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.find_fav_food),
-                    fontSize = 40.sp
+                    style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Icon(
@@ -81,7 +83,10 @@ fun HomeScreen(
                     value = orderWant,
                     onValueChange = {orderWant = it},
                     label = {
-                        Text(text = stringResource(id = R.string.what_order))
+                        Text(
+                            text = stringResource(id = R.string.what_order),
+                            style = MaterialTheme.typography.labelSmall
+                        )
                     },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(
@@ -134,9 +139,15 @@ fun SpecialDealCard(
             Column(
                 modifier.align(Alignment.CenterVertically)
             ) {
-                Text(text = stringResource(id = R.string.deal_month))
+                Text(
+                    text = stringResource(id = R.string.deal_month),
+                    style = MaterialTheme.typography.labelMedium
+                )
                 Button(onClick = { /*ToDo*/ }) {
-                    Text(text = stringResource(id = R.string.buy_now))
+                    Text(
+                        text = stringResource(id = R.string.buy_now),
+                        style = MaterialTheme.typography.labelLarge
+                    )
                 }
             }
         }
@@ -154,7 +165,10 @@ fun NearestRestaurantArea(
                 .fillMaxWidth()
                 .padding(bottom = 10.dp)
         ) {
-            Text(text = stringResource(id = R.string.near_restaurant))
+            Text(
+                text = stringResource(id = R.string.near_restaurant),
+                style = MaterialTheme.typography.labelMedium
+            )
             Spacer(modifier = modifier.weight(1f))
         }
         Row(
@@ -201,12 +215,19 @@ fun NearRestaurantCard(
                 painter = painterResource(id = imageRes),
                 contentDescription = null
             )
-            Text(text = stringResource(id = restaurantName))
-            Text(text = stringResource(id = distance))
+            Text(
+                text = stringResource(id = restaurantName),
+                style = MaterialTheme.typography.labelLarge
+            )
+            Text(
+                text = stringResource(id = distance),
+                style = MaterialTheme.typography.labelSmall
+            )
         }
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun Appreview(){

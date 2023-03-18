@@ -71,15 +71,25 @@ fun OrderDetailScreen(
                         ) {
                             Row {
                                 Card {
-                                    Text(text = "Popular")
+                                    Text(
+                                        text = "Popular",
+                                        style = androidx.compose.material3.MaterialTheme.typography.labelSmall
+                                    )
                                 }
                                 Spacer(modifier = Modifier.weight(1f))
                                 Icon(Icons.Default.LocationOn, contentDescription = null)
                                 Icon(Icons.Filled.Favorite, contentDescription =null)
                             }
 
-                            Text(text = stringResource(id = R.string.vegan_resto), maxLines = 2)
-                            Text(text = "Rating implementation")
+                            Text(
+                                text = stringResource(id = R.string.vegan_resto),
+                                style = androidx.compose.material3.MaterialTheme.typography.titleSmall,
+                                maxLines = 2
+                            )
+                            Text(
+                                text = "Rating implementation",
+                                style = androidx.compose.material3.MaterialTheme.typography.labelSmall
+                            )
 
                             OrderDescription(
                                 description = stringResource(id = R.string.demo_order_description),
@@ -94,7 +104,12 @@ fun OrderDetailScreen(
                     .fillMaxWidth()
                     .align(Alignment.BottomEnd)
                     .padding(start = 16.dp, end = 16.dp, bottom = 100.dp),
-                text = { Text("Add To Cart") },
+                text = {
+                    Text(
+                        "Add To Cart",
+                        style = androidx.compose.material3.MaterialTheme.typography.labelLarge
+                    )
+               },
                 onClick = onAddToCartClick,
             )
         }
@@ -103,7 +118,11 @@ fun OrderDetailScreen(
 
 @Composable
 fun OrderDescription(description: String){
-    Text(text = description, softWrap = true)
+    Text(
+        text = description,
+        style = androidx.compose.material3.MaterialTheme.typography.bodySmall,
+        softWrap = true
+    )
 }
 
 @Preview

@@ -1,5 +1,7 @@
 package com.disheecompose.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -81,21 +83,18 @@ fun CongratsText(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier.background(White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(id = R.string.congrats),
             color = Green8B,
-            fontSize = 35.sp
+            fontSize = 30.sp
         )
         Spacer(modifier = Modifier.height(5.dp))
 
         Text(
             text = stringResource(id = R.string.ready_profile),
-            color = TextBlack,
-            fontSize = 25.sp,
-            fontWeight = FontWeight.Bold
+            style = MaterialTheme.typography.titleSmall,
         )
     }
 }
@@ -121,11 +120,12 @@ fun GradientButton(
                 .padding(16.dp, 8.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(text, color = textColor)
+            Text(text, style = MaterialTheme.typography.labelLarge,)
         }
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
 
 )

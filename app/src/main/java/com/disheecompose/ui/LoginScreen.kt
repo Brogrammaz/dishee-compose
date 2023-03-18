@@ -3,6 +3,8 @@ package com.disheecompose.ui
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.graphics.drawable.Icon
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -48,7 +50,7 @@ fun LoginScreen(
     ) {
         Text(
             text = stringResource(id = R.string.welcome_dishee),
-            fontSize = 32.sp,
+            style = MaterialTheme.typography.titleMedium,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(top = 40.dp)
@@ -56,7 +58,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = stringResource(id = R.string.login_details),
-            fontSize = 24.sp,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
                 .align(Alignment.Start)
                 .padding(20.dp)
@@ -89,7 +91,7 @@ fun LoginScreen(
         )
         Text(
             text = stringResource(id = R.string.recover_password),
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
                 .align(Alignment.End)
                 .padding(top = 8.dp)
@@ -99,12 +101,15 @@ fun LoginScreen(
             onClick = onSignupButtonClicked,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
-            Text(text = stringResource(id = R.string.sign_in))
+            Text(
+                text = stringResource(id = R.string.sign_in),
+                style = MaterialTheme.typography.labelLarge
+            )
         }
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = stringResource(id = R.string.continue_with),
-            fontSize = 24.sp,
+            style = MaterialTheme.typography.bodySmall,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = Modifier.weight(1f))
@@ -113,10 +118,16 @@ fun LoginScreen(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = stringResource(id = R.string.no_account))
+            Text(
+                text = stringResource(id = R.string.no_account),
+                style = MaterialTheme.typography.labelLarge
+            )
             Spacer(modifier = Modifier.weight(1f))
             TextButton(onClick =  onRegisterTextButtonClicked) {
-                Text(text = stringResource(id = R.string.register))
+                Text(
+                    text = stringResource(id = R.string.register),
+                    style = MaterialTheme.typography.labelLarge,
+                )
             }
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -124,12 +135,14 @@ fun LoginScreen(
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
     name = "Login Screen Preview",
     showBackground = true,
     showSystemUi = true,
     uiMode = UI_MODE_NIGHT_YES
 )
+
 @Composable
 fun LoginScreenPreview() {
     DisheecomposeTheme {

@@ -30,7 +30,7 @@
 
     //Home
     <string name="title_activity_home">Home</string>
-    <string name="find_fav_food">Find Your \n\nFavorite Food</string>
+    <string name="find_fav_food">Find Your \nFavorite Food</string>
     <string name="what_order">What do you want to order?</string>
     <string name="deal_month">Special Deal For \nOctober</string>
     <string name="buy_now">Buy Now</string>
