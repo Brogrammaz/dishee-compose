@@ -4,11 +4,10 @@ import android.app.Activity
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
+import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color.Companion.Green
@@ -46,6 +45,24 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+private val DarkColorPalette = darkColors(
+    background = Cyan900,
+    surface = Cyan700,
+    onSurface = White,
+    primary = Grey900,
+    onPrimary = White,
+    secondary = Grey100
+)
+
+private val LightColorPalette = lightColors(
+    background = ThemeWhite,
+    surface = White,
+    onSurface = Black1,
+    primary = Green1,
+    onPrimary = White,
+    secondary = Green2
+)
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DisheecomposeTheme(
@@ -73,6 +90,21 @@ fun DisheecomposeTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
+        content = content
+    )
+}
+
+@Composable
+fun DisheeComposeTheme2(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val colors = if (darkTheme) {
+        DarkColorPalette
+    } else {
+        LightColorPalette
+    }
+
+    androidx.compose.material.MaterialTheme(
+        colors = colors,
+        typography = Typography2,
         content = content
     )
 }

@@ -24,6 +24,7 @@ import com.disheecompose.data.Comment
 import com.disheecompose.ui.components.CardRow
 import com.disheecompose.ui.components.CommentColumn
 import com.disheecompose.ui.components.RestaurantDetails
+import com.disheecompose.ui.theme.DisheeComposeTheme2
 import com.disheecompose.ui.theme.DisheecomposeTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -41,7 +42,7 @@ fun PostDetailScreen(
         scaffoldState.conceal()
     }*/
 
-    DisheecomposeTheme{
+    DisheeComposeTheme2(){
 
         BackdropScaffold(
             peekHeight = 0.dp,
