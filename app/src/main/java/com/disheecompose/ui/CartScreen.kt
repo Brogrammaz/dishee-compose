@@ -1,5 +1,7 @@
 package com.disheecompose.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -47,7 +49,7 @@ fun CartScreen(
 
         Spacer(modifier = modifier.weight(1f))
 
-        PlaceOrderCard(onPlaceOrderClick = onPlaceOrderClick)
+        PaymentDetailsCard(onPlaceOrderClick = onPlaceOrderClick)
     }
 }
 
@@ -60,8 +62,7 @@ fun MoveBackIcon(
         modifier = modifier
             .padding(1.dp)
             .size(40.dp),
-        shadowElevation =4.5.dp,
-        color = FaintPink
+        shadowElevation =4.5.dp
     ){
         IconButton(onClick = {
 
@@ -112,8 +113,7 @@ fun OrderCard(
         shape = MaterialTheme.shapes.small,
         modifier = modifier
             .padding(5.dp)
-            .fillMaxWidth(),
-
+            .fillMaxWidth()
         ) {
         Row(
             modifier.fillMaxWidth(),
@@ -133,9 +133,9 @@ fun OrderCard(
                     .defaultMinSize(minWidth = 100.dp, minHeight = 90.dp),
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
-                Text(text = orderName, fontSize = 15.sp)
-                Text(text = restaurant, fontSize = 10.sp, color = FaintText)
-                Text(text = "Ksh $price", fontSize = 20.sp, color = Green8B)
+                Text(text = orderName, style = MaterialTheme.typography.labelLarge)
+                Text(text = restaurant, style = MaterialTheme.typography.labelSmall)
+                Text(text = "Ksh $price", style = MaterialTheme.typography.labelMedium)
             }
 
             Row(
@@ -168,6 +168,7 @@ fun OrderCard(
 
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
     name = "Order Card Preview",
     showBackground = true
@@ -184,103 +185,47 @@ fun OrderCardPreview() {
 }
 
 @Composable
-fun PlaceOrderCard(
+fun PaymentDetailsCard(
     modifier: Modifier = Modifier,
-    subTotal: Int = 0,
-    deliveryFee: Int = 0,
-    discount: Int = 0,
-    totals: Int = 0,
     onPlaceOrderClick: () -> Unit
-) {
-    Surface(
-        shape = MaterialTheme.shapes.medium,
-        modifier = modifier.padding(5.dp)
-    ) {
-        Column(
-            modifier
-                .background(Green8B),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.sub_total),
-                    fontSize = 15.sp,
-                    color = ThemeWhite,
-                    modifier = modifier.padding(top = 10.dp)
-                )
-                Text(
-                    text = "$subTotal",
-                    color = ThemeWhite,
-                    modifier = modifier.padding(top = 10.dp)
-                )
+){
+    Card() {
+        Column (
+            modifier.padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp    )
+        ){
+            Row() {
+                Text(text = "Sub-Total", style = MaterialTheme.typography.labelSmall)
+                Spacer(modifier.weight(1f))
+                Text(text = "1200", style = MaterialTheme.typography.labelSmall)
             }
-
-            Spacer(modifier = modifier.height(5.dp))
-
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.delivery_charge),
-                    fontSize = 15.sp,
-                    color = ThemeWhite
-                )
-                Text(text = "$deliveryFee", color = ThemeWhite)
+            Row() {
+                Text(text = "Delivery Charge", style = MaterialTheme.typography.labelSmall)
+                Spacer(modifier.weight(1f))
+                Text(text = "100", style = MaterialTheme.typography.labelSmall)
             }
-
-            Spacer(modifier = modifier.height(5.dp))
-
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.discount),
-                    fontSize = 15.sp,
-                    color = ThemeWhite
-                )
-                Text(text = "$discount", color = ThemeWhite)
+            Row() {
+                Text(text = "Discount", style = MaterialTheme.typography.labelSmall)
+                Spacer(modifier.weight(1f))
+                Text(text = "200", style = MaterialTheme.typography.labelSmall)
             }
-
-            Spacer(modifier = modifier.height(5.dp))
-
-            Row(
-                modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp), Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = stringResource(id = R.string.total),
-                    fontSize = 15.sp,
-                    color = ThemeWhite
-                )
-                Text(text = "Ksh $totals", color = ThemeWhite)
+            Row() {
+                Text(text = "Total", style = MaterialTheme.typography.labelMedium)
+                Spacer(modifier.weight(1f))
+                Text(text = "Kshs 1500", style = MaterialTheme.typography.labelMedium)
             }
-
-            Spacer(modifier = modifier.height(10.dp))
-
             Button(
-                onClick =  onPlaceOrderClick,
-                modifier
-                    .fillMaxWidth()
-                    .padding(5.dp),
-                shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.buttonColors(White)
+                onClick = onPlaceOrderClick,
+                modifier.fillMaxWidth()
             ) {
-                Text(text = stringResource(id = R.string.place_order), color = Green8B)
+                Text(text = "Place My Order", style = MaterialTheme.typography.labelLarge)
             }
         }
     }
-
 }
 
+
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
     "Cart Screen preview",
     showBackground = true

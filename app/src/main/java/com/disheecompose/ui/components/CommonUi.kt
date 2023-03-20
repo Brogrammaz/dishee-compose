@@ -32,7 +32,12 @@ fun OutlinedTextFieldSample(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(text = stringResource(id = label)) },
+        label = {
+            Text(
+                text = stringResource(id = label),
+                style = MaterialTheme.typography.labelMedium
+            )
+        },
         singleLine = true,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,

@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -24,6 +25,7 @@ import com.disheecompose.data.Comment
 import com.disheecompose.ui.components.CardRow
 import com.disheecompose.ui.components.CommentColumn
 import com.disheecompose.ui.components.RestaurantDetails
+import com.disheecompose.ui.theme.DisheeComposeTheme2
 import com.disheecompose.ui.theme.DisheecomposeTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -41,7 +43,7 @@ fun PostDetailScreen(
         scaffoldState.conceal()
     }*/
 
-    DisheecomposeTheme{
+    DisheeComposeTheme2(){
 
         BackdropScaffold(
             peekHeight = 0.dp,
@@ -73,7 +75,8 @@ fun PostDetailScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     RestaurantDetails(
                         restaurantName = stringResource(id = R.string.vegan_resto),
@@ -82,26 +85,28 @@ fun PostDetailScreen(
                                 "This hotel is owned by Kaparo. Order healthy food here")
 
                     Row {
-                        Text(text = "Popular Menu", )
+                        Text(text = "Popular Menu", style = androidx.compose.material3.MaterialTheme.typography.labelMedium)
                         Spacer(modifier = Modifier.weight(1f))
-                        Text(text = "View All")
                     }
 
                     CardRow(
                         CardItem(
                             R.drawable.healthy_food,
                             "Special 1",
-                            "Description for Special 1"
+                            "Ksh 750"
                         ),
                         CardItem(
                             R.drawable.vegan_resto,
                             "Special 2",
-                            "Description for Special 2"
+                            "Ksh 370"
                         ),
                         onOrderClick = onOrderClick
                     )
 
-                    Text(text = "Comments")
+                    Text(
+                        text = "Comments",
+                        style = androidx.compose.material3.MaterialTheme.typography.labelMedium
+                    )
 
                     CommentColumn(
                         Comment(R.drawable.profilepic, "Njogu", "Whack"),

@@ -1,12 +1,11 @@
 package com.disheecompose.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,14 +60,14 @@ fun RegisterScreen(
     ){
         Text(
             text = stringResource(id = R.string.create_account),
-            fontSize = 32.sp,
+            style = MaterialTheme.typography.titleMedium,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(top = 40.dp)
         )
         Text(
             text = stringResource(id = R.string.register_details),
-            fontSize = 24.sp,
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
                 .align(Alignment.Start)
         )
@@ -136,10 +135,16 @@ fun RegisterScreen(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = stringResource(id = R.string.have_account))
+            Text(
+                text = stringResource(id = R.string.have_account),
+                style = MaterialTheme.typography.labelLarge
+            )
             Spacer(modifier = Modifier.weight(1f))
             TextButton(onClick =  onLoginTextButtonClicked) {
-                Text(text = stringResource(id = R.string.login))
+                Text(
+                    text = stringResource(id = R.string.login),
+                    style = MaterialTheme.typography.labelLarge
+                )
             }
         }
         Button(
@@ -158,10 +163,14 @@ fun TermsAndConditions(
 ){
     Row() {
         Checkbox(checked = checked, onCheckedChange = onCheckedChange)
-        Text(text = stringResource(id = R.string.terms_conditions))
+        Text(
+            text = stringResource(id = R.string.terms_conditions),
+            style = MaterialTheme.typography.labelSmall,
+        )
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun RegisterScreenPreview(){
