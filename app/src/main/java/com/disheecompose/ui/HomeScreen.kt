@@ -36,7 +36,8 @@ import com.disheecompose.ui.theme.DisheecomposeTheme
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    onRestaurantOnClick: () -> Unit = {}
+    onRestaurantOnClick: () -> Unit = {},
+    onSpecialDealOnClick: () -> Unit
 ){
 
     val focusManager = LocalFocusManager.current
@@ -110,7 +111,10 @@ fun HomeScreen(
                 )
             }
 
-            SpecialDealCard(imageRes = R.drawable.profilepic)
+            SpecialDealCard(
+                imageRes = R.drawable.profilepic,
+                onSpecialDealOnClick = onSpecialDealOnClick
+            )
 
             NearestRestaurantArea(
                 onRestaurantOnClick = onRestaurantOnClick
@@ -125,11 +129,13 @@ fun HomeScreen(
 fun SpecialDealCard(
     modifier: Modifier = Modifier,
     @DrawableRes imageRes: Int,
+    onSpecialDealOnClick: () -> Unit = {}
 ){
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
             .fillMaxWidth()
+            .clickable ( onClick = onSpecialDealOnClick )
     ) {
         Row(
             modifier.padding(10.dp)
@@ -227,6 +233,7 @@ fun NearRestaurantCard(
     }
 }
 
+/*
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
@@ -234,4 +241,4 @@ fun Appreview(){
     DisheecomposeTheme {
         HomeScreen()
     }
-}
+}*/

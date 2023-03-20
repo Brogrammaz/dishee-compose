@@ -74,7 +74,8 @@ fun DisheeApp(modifier: Modifier = Modifier){
 
             composable(route = DisheeScreen.Home.name){
                 HomeScreen(
-                    onRestaurantOnClick = {navController.navigate(DisheeScreen.PostDetail.name)}
+                    onRestaurantOnClick = {navController.navigate(DisheeScreen.PostDetail.name)},
+                    onSpecialDealOnClick = { navController.navigate(DisheeScreen.OrderDetail.name) }
                 )
             }
 
