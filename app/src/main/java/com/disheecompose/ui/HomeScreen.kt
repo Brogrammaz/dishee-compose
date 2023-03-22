@@ -37,7 +37,8 @@ import com.disheecompose.ui.theme.DisheecomposeTheme
 fun HomeScreen(
     modifier: Modifier = Modifier,
     onRestaurantOnClick: () -> Unit = {},
-    onSpecialDealOnClick: () -> Unit
+    onSpecialDealOnClick: () -> Unit,
+    onCartScreenNavigation: () -> Unit
 ){
 
     val focusManager = LocalFocusManager.current
@@ -48,7 +49,9 @@ fun HomeScreen(
 
     Scaffold(
         bottomBar = {
-            BottomNavigation()
+            BottomNavigation(
+                onCartScreenNavigation = onCartScreenNavigation
+            )
         }
     ) {
         Column(
@@ -135,7 +138,6 @@ fun SpecialDealCard(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
             .fillMaxWidth()
-            .clickable ( onClick = onSpecialDealOnClick )
     ) {
         Row(
             modifier.padding(10.dp)
@@ -149,7 +151,7 @@ fun SpecialDealCard(
                     text = stringResource(id = R.string.deal_month),
                     style = MaterialTheme.typography.labelMedium
                 )
-                Button(onClick = { /*ToDo*/ }) {
+                Button(onClick = onSpecialDealOnClick) {
                     Text(
                         text = stringResource(id = R.string.buy_now),
                         style = MaterialTheme.typography.labelLarge

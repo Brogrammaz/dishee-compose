@@ -47,7 +47,8 @@ fun OutlinedTextFieldSample(
 
 @Composable
 fun BottomNavigation(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onCartScreenNavigation: () -> Unit
 ){
     BottomAppBar(
         modifier
@@ -75,7 +76,7 @@ fun BottomNavigation(
 
         NavigationBarItem(
             selected = false,
-            onClick = { /*TODO*/ },
+            onClick = onCartScreenNavigation,
             icon = {
                 Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "User Icon")
             },
@@ -96,5 +97,7 @@ fun BottomNavigation(
 @Preview
 @Composable
 fun BottomNavPreviews(){
-    BottomNavigation()
+    BottomNavigation(
+        onCartScreenNavigation = {}
+    )
 }

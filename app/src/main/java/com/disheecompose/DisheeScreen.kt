@@ -75,7 +75,8 @@ fun DisheeApp(modifier: Modifier = Modifier){
             composable(route = DisheeScreen.Home.name){
                 HomeScreen(
                     onRestaurantOnClick = {navController.navigate(DisheeScreen.PostDetail.name)},
-                    onSpecialDealOnClick = { navController.navigate(DisheeScreen.OrderDetail.name) }
+                    onSpecialDealOnClick = { navController.navigate(DisheeScreen.OrderDetail.name) },
+                    onCartScreenNavigation = {navController.navigate(DisheeScreen.Cart.name)}
                 )
             }
 
@@ -93,7 +94,8 @@ fun DisheeApp(modifier: Modifier = Modifier){
 
             composable(route = DisheeScreen.Cart.name){
                 CartScreen(
-                    onPlaceOrderClick = {navController.navigate(DisheeScreen.Payment.name)}
+                    onPlaceOrderClick = {navController.navigate(DisheeScreen.Payment.name)},
+                    onNavigateBack = {navController.navigate(DisheeScreen.OrderDetail.name)}
                 )
             }
 
