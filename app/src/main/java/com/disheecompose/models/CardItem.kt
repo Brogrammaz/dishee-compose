@@ -1,4 +1,4 @@
-package com.disheecompose.data
+package com.disheecompose.models
 
 data class CardItem(
     val imageResId: Int,

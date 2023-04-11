@@ -1,12 +1,9 @@
-package com.disheecompose
+package com.disheecompose.models
 
-import androidx.compose.ui.res.painterResource
-import com.disheecompose.models.FeedData
-import com.disheecompose.models.OrderData
 
 object Utils {
-    
-    val feedList : List<FeedData> = listOf(
+
+    /*val feedList : List<FeedData> = listOf(
         FeedData(
             1,
             "KFC Westlands",
@@ -63,7 +60,7 @@ object Utils {
             "Grand Delightful Meals for Family",
             R.drawable.tabata
         )
-    )
+    )*/
 
     val myOrders : List<OrderData> = listOf()
 }

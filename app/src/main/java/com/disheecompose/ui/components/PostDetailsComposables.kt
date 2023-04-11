@@ -28,8 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.disheecompose.R
-import com.disheecompose.data.CardItem
-import com.disheecompose.data.Comment
+import com.disheecompose.models.CardItem
+import com.disheecompose.models.Comment
 import java.time.Instant
 import java.util.*
 

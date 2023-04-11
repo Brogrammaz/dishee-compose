@@ -1,4 +1,4 @@
-package com.disheecompose.data
+package com.disheecompose.models
 
 import androidx.annotation.DrawableRes
 

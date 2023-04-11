@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -93,6 +94,8 @@ fun BottomNavigation(
         )
     }
 }
+
+data class BottomNavItem(val title: String, val icon: ImageVector)
 
 @Preview
 @Composable
