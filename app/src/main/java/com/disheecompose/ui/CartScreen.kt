@@ -35,7 +35,8 @@ import com.disheecompose.ui.theme.*
 @Composable
 fun CartScreen(
     modifier: Modifier = Modifier,
-    onPlaceOrderClick: () -> Unit
+    onPlaceOrderClick: () -> Unit,
+    onNavigateBack: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -43,7 +44,7 @@ fun CartScreen(
     ) {
         Spacer(modifier = modifier.height(5.dp))
 
-        MoveBackIcon()
+        MoveBackIcon(onNavigateBack = onNavigateBack)
 
         MyOrders(orders = Utils.myOrders)
 
@@ -55,7 +56,8 @@ fun CartScreen(
 
 @Composable
 fun MoveBackIcon(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateBack: () -> Unit
 ) {
     Surface(
         shape = MaterialTheme.shapes.medium,
@@ -64,9 +66,7 @@ fun MoveBackIcon(
             .size(40.dp),
         shadowElevation =4.5.dp
     ){
-        IconButton(onClick = {
-
-        }) {
+        IconButton(onClick = onNavigateBack) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(id = R.string.back_icon))
         }
     }
@@ -234,7 +234,8 @@ fun PaymentDetailsCard(
 fun CartScreenPreview() {
     DisheecomposeTheme {
         CartScreen(
-            onPlaceOrderClick = {}
+            onPlaceOrderClick = {},
+            onNavigateBack = {}
         )
     }
 }

@@ -36,7 +36,9 @@ import com.disheecompose.ui.theme.DisheecomposeTheme
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    onRestaurantOnClick: () -> Unit = {}
+    onRestaurantOnClick: () -> Unit = {},
+    onSpecialDealOnClick: () -> Unit,
+    onCartScreenNavigation: () -> Unit
 ){
 
     val focusManager = LocalFocusManager.current
@@ -47,7 +49,9 @@ fun HomeScreen(
 
     Scaffold(
         bottomBar = {
-            BottomNavigation()
+            BottomNavigation(
+                onCartScreenNavigation = onCartScreenNavigation
+            )
         }
     ) {
         Column(
@@ -110,7 +114,10 @@ fun HomeScreen(
                 )
             }
 
-            SpecialDealCard(imageRes = R.drawable.profilepic)
+            SpecialDealCard(
+                imageRes = R.drawable.profilepic,
+                onSpecialDealOnClick = onSpecialDealOnClick
+            )
 
             NearestRestaurantArea(
                 onRestaurantOnClick = onRestaurantOnClick
@@ -125,6 +132,7 @@ fun HomeScreen(
 fun SpecialDealCard(
     modifier: Modifier = Modifier,
     @DrawableRes imageRes: Int,
+    onSpecialDealOnClick: () -> Unit = {}
 ){
     Card(
         modifier = modifier
@@ -143,7 +151,7 @@ fun SpecialDealCard(
                     text = stringResource(id = R.string.deal_month),
                     style = MaterialTheme.typography.labelMedium
                 )
-                Button(onClick = { /*ToDo*/ }) {
+                Button(onClick = onSpecialDealOnClick) {
                     Text(
                         text = stringResource(id = R.string.buy_now),
                         style = MaterialTheme.typography.labelLarge
@@ -227,6 +235,7 @@ fun NearRestaurantCard(
     }
 }
 
+/*
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
@@ -234,4 +243,4 @@ fun Appreview(){
     DisheecomposeTheme {
         HomeScreen()
     }
-}
+}*/

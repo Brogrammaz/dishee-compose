@@ -1,5 +1,7 @@
 package com.disheecompose.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -147,6 +150,7 @@ fun AppNameDesignPreview() {
     WelcomeScreen()
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(
     name = "Loading Dot Animation Preview",
     showBackground = true,

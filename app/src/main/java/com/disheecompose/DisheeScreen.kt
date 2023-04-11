@@ -3,22 +3,20 @@ package com.disheecompose
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.key.Key.Companion.Home
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.disheecompose.ui.*
-import com.disheecompose.ui.components.BottomNavigation
+import kotlinx.coroutines.delay
 
 enum class DisheeScreen {
+    Welcome,
     Register,
     UploadPicture,
     Success,
@@ -43,9 +41,23 @@ fun DisheeApp(modifier: Modifier = Modifier){
     ) {
         NavHost(
             navController = navController ,
-            startDestination = DisheeScreen.Login.name,
+            startDestination = DisheeScreen.Welcome.name,
             //modifier = modifier.padding(16.dp)
         ){
+            composable(route = DisheeScreen.Welcome.name){
+                WelcomeScreen()
+                LaunchedEffect(Unit) {
+                    delay(2000)
+                    navController.navigate(
+                        route = DisheeScreen.Login.name,
+                        navOptions = NavOptions.Builder()
+                            .setPopUpTo(DisheeScreen.Welcome.name, true)
+                            .build()
+                    )
+                }
+            }
+
+
             composable(route = DisheeScreen.Register.name){
                 RegisterScreen(
                     onRegisterButtonClicked = { navController.navigate(DisheeScreen.UploadPicture.name) },
@@ -74,7 +86,9 @@ fun DisheeApp(modifier: Modifier = Modifier){
 
             composable(route = DisheeScreen.Home.name){
                 HomeScreen(
-                    onRestaurantOnClick = {navController.navigate(DisheeScreen.PostDetail.name)}
+                    onRestaurantOnClick = {navController.navigate(DisheeScreen.PostDetail.name)},
+                    onSpecialDealOnClick = { navController.navigate(DisheeScreen.OrderDetail.name) },
+                    onCartScreenNavigation = {navController.navigate(DisheeScreen.Cart.name)}
                 )
             }
 
@@ -92,7 +106,8 @@ fun DisheeApp(modifier: Modifier = Modifier){
 
             composable(route = DisheeScreen.Cart.name){
                 CartScreen(
-                    onPlaceOrderClick = {navController.navigate(DisheeScreen.Payment.name)}
+                    onPlaceOrderClick = {navController.navigate(DisheeScreen.Payment.name)},
+                    onNavigateBack = {navController.navigate(DisheeScreen.OrderDetail.name)}
                 )
             }
 
