@@ -8,12 +8,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.disheecompose.ui.*
+import com.disheecompose.ui.home.HomeDestination
+import com.disheecompose.ui.home.HomeScreen
 import kotlinx.coroutines.delay
 
 enum class DisheeScreen {
@@ -22,7 +25,6 @@ enum class DisheeScreen {
     UploadPicture,
     Success,
     Login,
-    Home,
     PostDetail,
     OrderDetail,
     Cart,
@@ -85,20 +87,27 @@ fun DisheeNavHost(
 
             composable(route = DisheeScreen.Login.name){
                 LoginScreen(
-                    onSignupButtonClicked = { navController.navigate(DisheeScreen.Home.name) },
+                    onSignupButtonClicked = { navController.navigate(HomeDestination.route) },
                     onRegisterTextButtonClicked = {navController.navigate(DisheeScreen.Register.name)}
                 )
             }
 
-            composable(route = DisheeScreen.Home.name){
+            composable(route = HomeDestination.route){
                 HomeScreen(
-                    onRestaurantOnClick = {navController.navigate(DisheeScreen.PostDetail.name)},
+                    onRestaurantOnClick = {
+                        navController.navigate("${PostDetailDestination.route}/${it}")
+                                          },
                     onSpecialDealOnClick = { navController.navigate(DisheeScreen.OrderDetail.name) },
                     onCartScreenNavigation = {navController.navigate(DisheeScreen.Cart.name)}
                 )
             }
 
-            composable(route = DisheeScreen.PostDetail.name){
+            composable(
+                route = PostDetailDestination.routeWithArgs,
+                arguments = listOf(navArgument(PostDetailDestination.restaurantIdArg){
+                    type = NavType.IntType
+                })
+            ){
                 PostDetailScreen(
                     onOrderClick = { navController.navigate(DisheeScreen.OrderDetail.name)}
                 )

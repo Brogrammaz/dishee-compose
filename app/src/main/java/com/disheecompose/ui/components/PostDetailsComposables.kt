@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.disheecompose.R
-import com.disheecompose.models.CardItem
+import com.disheecompose.models.Menu
 import com.disheecompose.models.Comment
 import java.time.Instant
 import java.util.*
@@ -148,8 +148,8 @@ fun RestaurantDetails(restaurantName: String, description: String){
 
 /*@Composable
 fun CardRow(
-    cardItem1: CardItem,
-    cardItem2: CardItem,
+    cardItem1: Menu,
+    cardItem2: Menu,
     modifier: Modifier = Modifier
 ){
     Row(
@@ -163,7 +163,7 @@ fun CardRow(
 
 @Composable
 fun CardRow(
-    vararg items: CardItem,
+    vararg items: Menu,
     onOrderClick: () -> Unit = {}
 ) {
     LazyRow(
@@ -171,7 +171,7 @@ fun CardRow(
     ){
         items(items.size) { index ->
             CardsItem(
-                cardItem = CardItem(items[index].imageResId, items[index].title, items[index].price),
+                cardItem = Menu(items[index].imageResId, items[index].title, items[index].price),
                 onOrderClick = onOrderClick
             )
         }
@@ -180,7 +180,7 @@ fun CardRow(
 
 @Composable
 fun CardsItem(
-    cardItem: CardItem,
+    cardItem: Menu,
     modifier: Modifier = Modifier,
     onOrderClick: () -> Unit = {}
 ){
@@ -224,7 +224,7 @@ fun CardsItem(
 
 @Composable
 fun ExpandableCardsRow(
-    cardList: List<CardItem>,
+    cardList: List<Menu>,
     expanded: Boolean
 ){
     Column(modifier = Modifier.fillMaxWidth()) {
