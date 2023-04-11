@@ -1,16 +1,17 @@
-package com.disheecompose
+package com.disheecompose.navigation
 
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.disheecompose.ui.*
 import kotlinx.coroutines.delay
@@ -28,21 +29,26 @@ enum class DisheeScreen {
     Payment
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
+/**
+ * Provides Navigation graph for the application.
+ */
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun DisheeApp(modifier: Modifier = Modifier){
+fun DisheeNavHost(
+    modifier: Modifier = Modifier
+){
     val navController = rememberNavController()
-    val backStackEntry by navController.currentBackStackEntryAsState()
 
-    Scaffold(
+    Scaffold (
         topBar = {}
-    ) {
+    ){
         NavHost(
             navController = navController ,
             startDestination = DisheeScreen.Welcome.name,
-            //modifier = modifier.padding(16.dp)
+            modifier = modifier
         ){
             composable(route = DisheeScreen.Welcome.name){
                 WelcomeScreen()
@@ -116,4 +122,5 @@ fun DisheeApp(modifier: Modifier = Modifier){
             }
         }
     }
+
 }
