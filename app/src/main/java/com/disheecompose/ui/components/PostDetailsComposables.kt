@@ -162,16 +162,16 @@ fun CardRow(
 }*/
 
 @Composable
-fun CardRow(
-    vararg items: Menu,
+fun MenuRow(
+    items: List<Menu>,
     onOrderClick: () -> Unit = {}
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ){
         items(items.size) { index ->
-            CardsItem(
-                cardItem = Menu(items[index].imageResId, items[index].title, items[index].price),
+            MenuItem(
+                menuItem = Menu(items[index].imageResId, items[index].title, items[index].price),
                 onOrderClick = onOrderClick
             )
         }
@@ -179,8 +179,8 @@ fun CardRow(
 }
 
 @Composable
-fun CardsItem(
-    cardItem: Menu,
+fun MenuItem(
+    menuItem: Menu,
     modifier: Modifier = Modifier,
     onOrderClick: () -> Unit = {}
 ){
@@ -196,7 +196,7 @@ fun CardsItem(
             modifier = Modifier.padding(4.dp).align(Alignment.CenterHorizontally)
         ){
             Image(
-                painter = painterResource(id = cardItem.imageResId),
+                painter = painterResource(id = menuItem.imageResId),
                 contentDescription = null,
                 modifier = Modifier
                     .height(100.dp),
@@ -204,14 +204,14 @@ fun CardsItem(
             )
 
             Text(
-                text = cardItem.title,
+                text = menuItem.title,
                 modifier = Modifier.padding(top = 4.dp),
                 style = MaterialTheme.typography.labelLarge,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = cardItem.price,
+                text = menuItem.price,
                 modifier = Modifier.padding(top = 4.dp),
                 style = MaterialTheme.typography.labelSmall,
                 maxLines = 2,
@@ -250,8 +250,8 @@ fun ExpandableCardsRow(
                 columns = GridCells.Fixed(2),
                 content = {
                           items(cardList){
-                              CardsItem(
-                                  cardItem = it
+                              MenuItem(
+                                  menuItem = it
                               )
                           }
                 },

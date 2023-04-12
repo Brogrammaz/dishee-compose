@@ -13,7 +13,7 @@ class PostDetailsViewModel(
     private val _uiState = MutableStateFlow(RestaurantUiState())
     val uiState: StateFlow<RestaurantUiState> = _uiState
 
-    private val restaurantId: Int = checkNotNull(savedStateHandle["restaurantId"])
+    private val restaurantId: Int = checkNotNull(savedStateHandle[PostDetailDestination.restaurantIdArg])
 
     init {
         initializeUIState()
@@ -26,7 +26,8 @@ class PostDetailsViewModel(
             id = restaurant.id,
             imageResId = restaurant.imageResId,
             title = restaurant.title,
-            distance = restaurant.distance
+            distance = restaurant.distance,
+            menus = restaurant.menuList
         )
     }
 }

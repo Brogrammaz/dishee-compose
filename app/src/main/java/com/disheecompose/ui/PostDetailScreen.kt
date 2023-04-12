@@ -17,10 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.disheecompose.AppViewModelProvider
 import com.disheecompose.R
-import com.disheecompose.models.Menu
 import com.disheecompose.models.Comment
 import com.disheecompose.navigation.NavigationDestination
-import com.disheecompose.ui.components.CardRow
+import com.disheecompose.ui.components.MenuRow
 import com.disheecompose.ui.components.CommentColumn
 import com.disheecompose.ui.components.RestaurantDetails
 import com.disheecompose.ui.theme.DisheeComposeTheme2
@@ -94,17 +93,8 @@ fun PostDetailScreen(
                         Spacer(modifier = Modifier.weight(1f))
                     }
 
-                    CardRow(
-                        Menu(
-                            R.drawable.healthy_food,
-                            "Special 1",
-                            "Ksh 750"
-                        ),
-                        Menu(
-                            R.drawable.vegan_resto,
-                            "Special 2",
-                            "Ksh 370"
-                        ),
+                    MenuRow(
+                        items = restaurantUiState.value.menus,
                         onOrderClick = onOrderClick
                     )
 
