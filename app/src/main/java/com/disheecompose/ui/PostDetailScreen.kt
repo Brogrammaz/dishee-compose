@@ -3,38 +3,42 @@ package com.disheecompose.ui
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.BackdropScaffoldDefaults.frontLayerShape
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.disheecompose.Greeting4
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.disheecompose.AppViewModelProvider
 import com.disheecompose.R
-import com.disheecompose.data.CardItem
-import com.disheecompose.data.Comment
-import com.disheecompose.ui.components.CardRow
+import com.disheecompose.models.Comment
+import com.disheecompose.navigation.NavigationDestination
+import com.disheecompose.ui.components.MenuRow
 import com.disheecompose.ui.components.CommentColumn
 import com.disheecompose.ui.components.RestaurantDetails
 import com.disheecompose.ui.theme.DisheeComposeTheme2
 import com.disheecompose.ui.theme.DisheecomposeTheme
 
+object PostDetailDestination: NavigationDestination{
+    override val route = "post_detail"
+    const val restaurantIdArg = "restaurantId"
+    val routeWithArgs = "$route/{$restaurantIdArg}"
+}
+
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PostDetailScreen(
-    onOrderClick: () -> Unit = {}
+    onOrderClick: () -> Unit = {},
+    viewModel: PostDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ){
-
+    val restaurantUiState = viewModel.uiState.collectAsState()
 
     val scaffoldState = rememberBackdropScaffoldState(
         BackdropValue.Revealed)
@@ -62,7 +66,7 @@ fun PostDetailScreen(
                     // For simplicity, I'll use an Image composable to represent the video thumbnail
 
                     Image(
-                        painter = painterResource(id = R.drawable.healthy_food),
+                        painter = painterResource(id = restaurantUiState.value.imageResId),
                         contentDescription = "Video Thumbnail",
                         modifier = Modifier
                             .fillMaxSize(),
@@ -79,7 +83,7 @@ fun PostDetailScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     RestaurantDetails(
-                        restaurantName = stringResource(id = R.string.vegan_resto),
+                        restaurantName = stringResource(id = restaurantUiState.value.title),
                         description = "This hotel is owned by Kaparo. Order healthy food here" +
                                 "This hotel is owned by Kaparo. Order healthy food here" +
                                 "This hotel is owned by Kaparo. Order healthy food here")
@@ -89,17 +93,8 @@ fun PostDetailScreen(
                         Spacer(modifier = Modifier.weight(1f))
                     }
 
-                    CardRow(
-                        CardItem(
-                            R.drawable.healthy_food,
-                            "Special 1",
-                            "Ksh 750"
-                        ),
-                        CardItem(
-                            R.drawable.vegan_resto,
-                            "Special 2",
-                            "Ksh 370"
-                        ),
+                    MenuRow(
+                        items = restaurantUiState.value.menus,
                         onOrderClick = onOrderClick
                     )
 

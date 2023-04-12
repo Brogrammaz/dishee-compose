@@ -1,6 +1,6 @@
-package com.disheecompose.data
+package com.disheecompose.models
 
-data class CardItem(
+data class Menu(
     val imageResId: Int,
     val title: String,
     val price: String

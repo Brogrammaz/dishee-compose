@@ -28,8 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.disheecompose.R
-import com.disheecompose.data.CardItem
-import com.disheecompose.data.Comment
+import com.disheecompose.models.Menu
+import com.disheecompose.models.Comment
 import java.time.Instant
 import java.util.*
 
@@ -148,8 +148,8 @@ fun RestaurantDetails(restaurantName: String, description: String){
 
 /*@Composable
 fun CardRow(
-    cardItem1: CardItem,
-    cardItem2: CardItem,
+    cardItem1: Menu,
+    cardItem2: Menu,
     modifier: Modifier = Modifier
 ){
     Row(
@@ -162,16 +162,16 @@ fun CardRow(
 }*/
 
 @Composable
-fun CardRow(
-    vararg items: CardItem,
+fun MenuRow(
+    items: List<Menu>,
     onOrderClick: () -> Unit = {}
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ){
         items(items.size) { index ->
-            CardsItem(
-                cardItem = CardItem(items[index].imageResId, items[index].title, items[index].price),
+            MenuItem(
+                menuItem = Menu(items[index].imageResId, items[index].title, items[index].price),
                 onOrderClick = onOrderClick
             )
         }
@@ -179,8 +179,8 @@ fun CardRow(
 }
 
 @Composable
-fun CardsItem(
-    cardItem: CardItem,
+fun MenuItem(
+    menuItem: Menu,
     modifier: Modifier = Modifier,
     onOrderClick: () -> Unit = {}
 ){
@@ -196,7 +196,7 @@ fun CardsItem(
             modifier = Modifier.padding(4.dp).align(Alignment.CenterHorizontally)
         ){
             Image(
-                painter = painterResource(id = cardItem.imageResId),
+                painter = painterResource(id = menuItem.imageResId),
                 contentDescription = null,
                 modifier = Modifier
                     .height(100.dp),
@@ -204,14 +204,14 @@ fun CardsItem(
             )
 
             Text(
-                text = cardItem.title,
+                text = menuItem.title,
                 modifier = Modifier.padding(top = 4.dp),
                 style = MaterialTheme.typography.labelLarge,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = cardItem.price,
+                text = menuItem.price,
                 modifier = Modifier.padding(top = 4.dp),
                 style = MaterialTheme.typography.labelSmall,
                 maxLines = 2,
@@ -224,7 +224,7 @@ fun CardsItem(
 
 @Composable
 fun ExpandableCardsRow(
-    cardList: List<CardItem>,
+    cardList: List<Menu>,
     expanded: Boolean
 ){
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -250,8 +250,8 @@ fun ExpandableCardsRow(
                 columns = GridCells.Fixed(2),
                 content = {
                           items(cardList){
-                              CardsItem(
-                                  cardItem = it
+                              MenuItem(
+                                  menuItem = it
                               )
                           }
                 },

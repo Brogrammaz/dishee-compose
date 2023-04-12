@@ -1,10 +1,7 @@
-package com.disheecompose.ui
+package com.disheecompose.ui.home
 
 import android.annotation.SuppressLint
-import android.os.Build
 import androidx.annotation.DrawableRes
-import androidx.annotation.RequiresApi
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -24,22 +21,28 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.disheecompose.ui.components.BottomNavigation
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.disheecompose.R
-import com.disheecompose.ui.theme.DisheecomposeTheme
+import com.disheecompose.models.Restaurant
+import com.disheecompose.navigation.NavigationDestination
+import com.disheecompose.ui.components.BottomNavigation
+
+object HomeDestination: NavigationDestination{
+    override val route = "home"
+}
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    onRestaurantOnClick: () -> Unit = {},
+    onRestaurantOnClick: (Int) -> Unit ,
     onSpecialDealOnClick: () -> Unit,
-    onCartScreenNavigation: () -> Unit
+    onCartScreenNavigation: () -> Unit,
+    viewModel: HomeViewModel = viewModel()
 ){
+    val homeUiState by viewModel.uiState.collectAsState()
 
     val focusManager = LocalFocusManager.current
 
@@ -120,7 +123,8 @@ fun HomeScreen(
             )
 
             NearestRestaurantArea(
-                onRestaurantOnClick = onRestaurantOnClick
+                restaurantList = homeUiState.restaurantList,
+                onRestaurantOnClick = { onRestaurantOnClick(it.id) }
             )
         }
     }
@@ -164,8 +168,9 @@ fun SpecialDealCard(
 
 @Composable
 fun NearestRestaurantArea(
+    restaurantList: List<Restaurant>,
     modifier: Modifier = Modifier,
-    onRestaurantOnClick: () -> Unit = {}
+    onRestaurantOnClick: (Restaurant) -> Unit = {}
 ){
     Column {
         Row(
@@ -182,36 +187,24 @@ fun NearestRestaurantArea(
         Row(
             modifier.fillMaxWidth()
         ) {
-            NearRestaurantCard(
-                imageRes = R.drawable.healthy_food,
-                restaurantName = R.string.healthy_food,
-                distance = R.string.min_12,
-                onRestaurantOnClick = onRestaurantOnClick
-            )
+            NearRestaurantCard(restaurant = restaurantList[0], onRestaurantOnClick = onRestaurantOnClick)
             Spacer(modifier = modifier.weight(1f))
-            NearRestaurantCard(
-                imageRes = R.drawable.vegan_resto,
-                restaurantName = R.string.vegan_resto,
-                distance = R.string.min_8,
-                onRestaurantOnClick = onRestaurantOnClick
-            )
+            NearRestaurantCard(restaurant = restaurantList[1], onRestaurantOnClick = onRestaurantOnClick)
         }
     }
 }
 
 @Composable
 fun NearRestaurantCard(
+    restaurant: Restaurant,
     modifier: Modifier = Modifier,
-    @DrawableRes imageRes: Int,
-    @StringRes restaurantName: Int,
-    @StringRes distance: Int,
-    onRestaurantOnClick: () -> Unit = {}
+    onRestaurantOnClick: (Restaurant) -> Unit
 ){
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(4.dp))
             .size(180.dp)
-            .clickable(onClick = onRestaurantOnClick)
+            .clickable{ onRestaurantOnClick(restaurant) }
     ) {
         Column(
             modifier.fillMaxSize(),
@@ -220,15 +213,15 @@ fun NearRestaurantCard(
         ) {
             Image(
                 modifier = modifier.size(80.dp),
-                painter = painterResource(id = imageRes),
+                painter = painterResource(id = restaurant.imageResId),
                 contentDescription = null
             )
             Text(
-                text = stringResource(id = restaurantName),
+                text = stringResource(id = restaurant.title),
                 style = MaterialTheme.typography.labelLarge
             )
             Text(
-                text = stringResource(id = distance),
+                text = stringResource(id = restaurant.distance),
                 style = MaterialTheme.typography.labelSmall
             )
         }
