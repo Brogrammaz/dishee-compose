@@ -1,11 +1,9 @@
-package com.disheecompose.ui
+package com.disheecompose.ui.auth
 
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,7 +23,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.disheecompose.R
 import com.disheecompose.ui.components.OutlinedTextFieldSample
 import com.disheecompose.ui.theme.DisheecomposeTheme
@@ -87,7 +84,11 @@ fun LoginScreen(
             ),
             keyboardActions = KeyboardActions(
                 onDone = {focusManager.clearFocus()}
-            )
+            ),
+            /*
+            TODO, HIDE USER PASSWORD INPUT
+            visualTransformation = PasswordVisualTransformation()
+            */
         )
         Text(
             text = stringResource(id = R.string.recover_password),

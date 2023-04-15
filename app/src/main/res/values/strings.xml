@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Dishee</string>
-    <string name="dishee">Dishee</string>
+    <string name="app_name">Dishey</string>
+    <string name="dishee">Dishey</string>
     <string name="title_activity_login">Login</string>
     <string name="login">Login</string>
-    <string name="welcome_dishee">Welcome to Dishee</string>
+    <string name="welcome_dishee">Welcome to Dishey</string>
     <string name="login_details">Enter your details to Log in</string>
     <string name="recover_password">Recover password</string>
     <string name="email">Email</string>
@@ -24,54 +24,46 @@
     <string name="confirm_pass">Confirm Password</string>
     <string name="terms_conditions">By creating an account you agree to the
         Terms and Conditions including or privacy
-        policy 
+        policy
     </string>
     <string name="have_account">Already have an account?</string>
 
     //Home
     <string name="title_activity_home">Home</string>
-    <string name="find_fav_food">Find Your \nFavorite Food</string>
-    <string name="what_order">What do you want to order?</string>
-    <string name="deal_month">Special Deal For \nOctober</string>
-    <string name="buy_now">Buy Now</string>
-    <string name="near_restaurant">Nearest Restaurant</string>
+    <string name="find_recipe">Search For A \nRecipe</string>
+    <string name="what_recipe">Find any Recipe</string>
+    <string name="top_curators">Top Curators</string>
+    <string name="top_recipes">Top Recipes</string>
     <string name="view_more">View More</string>
     <string name="healthy_food">Healthy Food</string>
     <string name="vegan_resto">Vegan Resto</string>
-    <string name="min_12">12 Minutes</string>
-    <string name="min_8">8 Minutes</string>
-    <string name="title_activity_post_details">PostDetails</string>
-    <string name="title_activity_feed">Feed</string>
-    <string name="view_post">View Post</string>
     <string name="get_started">Get Started</string>
     <string name="congrats">Congratulations!</string>
     <string name="ready_profile">Your Profile is Ready To Use</string>
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_success">Success</string>
-    <string name="title_activity_cart">Cart</string>
 
-    <string name="sub_total">Sub-Total</string>
-    <string name="delivery_charge">Delivery Charge</string>
-    <string name="discount">Discount</string>
-    <string name="total">Total</string>
-    <string name="place_order">Place My Order</string>
-    <string name="add_item">Add Item</string>
+    <string name="add_recipe">Add New Recipe</string>
     <string name="name_title">Name</string>
-    <string name="category_title">Category</string>
-    <string name="description_title">Description</string>
-    <string name="price_title">Price</string>
     <string name="upload_image">Upload Image</string>
     <string name="upload">Upload</string>
     <string name="title_activity_add_item">AddItem</string>
     <string name="back_icon">Navigate Back Icon</string>
 
-    <string name="demo_order_description">Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt. Velit non est cillum consequat cupidatat ex Lorem laboris labore aliqua ad duis eu laborum.\n" +
-                        "\n" +
-                        "Strowberry\n" +
-                        "Cream\n" +
-                        "wheat\n" +
-                        "\n" +
-                        "Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.</string>
-    <string name="upload_video">Upload Video</string>
+    <string name="ingredient_example">Rice\nOnions\nMeat\nCooking Oil</string>
+    <string name="my_recipes">My Recipes</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="directions">Directions</string>
+    <string name="directions_example">Cut the onions to smaller sizes.
+        Put them in the cooking pan(sufuria). Add 5 tablespoonfuls of cooking oil.
+        Cook until golden brown. Add meat and simmer(Sijui hii ni nini). Add 5 cups of water. Add
+        Rice. Finish. Serve while hot.
+    </string>
+    <string name="comments">Comments</string>
+    <string name="write_comment">Write your comment here</string>
+    <string name="back_button">Back</string>
+    <string name="curator_profile">Curator Profile</string>
+    <string name="this_recipe">This recipe</string>
 
 </resources>

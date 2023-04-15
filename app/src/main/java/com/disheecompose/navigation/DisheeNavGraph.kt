@@ -15,6 +15,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.disheecompose.ui.*
+import com.disheecompose.ui.auth.*
+import com.disheecompose.ui.home.AddRecipeDestination
+import com.disheecompose.ui.home.AddRecipeScreen
 import com.disheecompose.ui.home.HomeDestination
 import com.disheecompose.ui.home.HomeScreen
 import kotlinx.coroutines.delay
@@ -25,10 +28,6 @@ enum class DisheeScreen {
     UploadPicture,
     Success,
     Login,
-    PostDetail,
-    OrderDetail,
-    Cart,
-    Payment
 }
 
 /**
@@ -94,40 +93,47 @@ fun DisheeNavHost(
 
             composable(route = HomeDestination.route){
                 HomeScreen(
-                    onRestaurantOnClick = {
-                        navController.navigate("${PostDetailDestination.route}/${it}")
-                                          },
-                    onSpecialDealOnClick = { navController.navigate(DisheeScreen.OrderDetail.name) },
-                    onCartScreenNavigation = {navController.navigate(DisheeScreen.Cart.name)}
+                    onCuratorOnClick = {
+                        navController.navigate("${CuratorScreenDestination.route}/${it}")
+                    },
+                    onRecipeOnClick = {
+                        navController.navigate("${RecipeScreenDestination.route}/${it}")
+                    },
+                    addRecipeClick = {
+                        navController.navigate(AddRecipeDestination.route)
+                    }
                 )
             }
 
             composable(
-                route = PostDetailDestination.routeWithArgs,
-                arguments = listOf(navArgument(PostDetailDestination.restaurantIdArg){
+                route = CuratorScreenDestination.routeWithArgs,
+                arguments = listOf(navArgument(CuratorScreenDestination.curatorIdArg){
                     type = NavType.IntType
                 })
             ){
-                PostDetailScreen(
-                    onOrderClick = { navController.navigate(DisheeScreen.OrderDetail.name)}
+                CuratorScreen(
+                    onRecipeClick = { navController.navigate("${RecipeScreenDestination.route}/${it}")},
+                    navigateBack = {navController.navigate(HomeDestination.route)}
                 )
             }
 
-            composable(route = DisheeScreen.OrderDetail.name){
-                OrderDetailScreen(
-                    onAddToCartClick = {navController.navigate(DisheeScreen.Cart.name)}
+            composable(
+                route = RecipeScreenDestination.routeWithArgs,
+                arguments = listOf(navArgument(RecipeScreenDestination.recipeIdArg){
+                    type = NavType.IntType
+                })
+            ){
+                RecipeScreen(
+                    onSubmitReply = {}
                 )
             }
 
-            composable(route = DisheeScreen.Cart.name){
-                CartScreen(
-                    onPlaceOrderClick = {navController.navigate(DisheeScreen.Payment.name)},
-                    onNavigateBack = {navController.navigate(DisheeScreen.OrderDetail.name)}
+            composable(
+                route = AddRecipeDestination.route
+            ){
+                AddRecipeScreen(
+                    navigateBack = { navController.navigate(HomeDestination.route) }
                 )
-            }
-
-            composable(route = DisheeScreen.Payment.name){
-                PaymentScreen()
             }
         }
     }

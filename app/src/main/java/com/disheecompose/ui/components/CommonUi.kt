@@ -10,9 +10,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -46,10 +45,37 @@ fun OutlinedTextFieldSample(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OutlinedTextAreaSample(
+    value: String,
+    onValueChange: (String) -> Unit,
+    @StringRes label: Int,
+    keyboardOptions: KeyboardOptions,
+    keyboardActions: KeyboardActions,
+    modifier: Modifier = Modifier,
+    maxLines: Int
+){
+
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = {
+            Text(
+                text = stringResource(id = label),
+                style = MaterialTheme.typography.labelMedium
+            )
+        },
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        modifier = modifier.fillMaxWidth(),
+        maxLines = maxLines
+    )
+}
+
 @Composable
 fun BottomNavigation(
-    modifier: Modifier = Modifier,
-    onCartScreenNavigation: () -> Unit
+    modifier: Modifier = Modifier
 ){
     BottomAppBar(
         modifier
@@ -77,15 +103,6 @@ fun BottomNavigation(
 
         NavigationBarItem(
             selected = false,
-            onClick = onCartScreenNavigation,
-            icon = {
-                Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "User Icon")
-            },
-            modifier = modifier.padding(horizontal = 2.dp)
-        )
-
-        NavigationBarItem(
-            selected = false,
             onClick = { /*TODO*/ },
             icon = {
                 Icon(imageVector = Icons.Default.Notifications, contentDescription = "User Icon")
@@ -100,7 +117,5 @@ data class BottomNavItem(val title: String, val icon: ImageVector)
 @Preview
 @Composable
 fun BottomNavPreviews(){
-    BottomNavigation(
-        onCartScreenNavigation = {}
-    )
+    BottomNavigation()
 }
