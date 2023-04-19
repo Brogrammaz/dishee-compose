@@ -108,14 +108,15 @@ fun RecipeScreen(
                             IngredientsArea()
                             DirectionsArea()
                             CommentSection(
-                                Comment(R.drawable.profilepic, "Njogu", "Whack"),
+                                recipeUiState.value.comments
+                                /*Comment(R.drawable.profilepic, "Njogu", "Whack"),
                                 Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante"),
                                 Comment(R.drawable.profilepic, "Njogu", "Whack"),
                                 Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante"),
                                 Comment(R.drawable.profilepic, "Njogu", "Whack"),
                                 Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante"),
                                 Comment(R.drawable.profilepic, "Njogu", "Whack"),
-                                Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante"),
+                                Comment(R.drawable.profilepic, "Karuchiu", "Comida Interesante")*/,
                                 reply = replyText,
                                 onValueChange = {replyText = it},
                                 label = R.string.write_comment,
@@ -172,7 +173,7 @@ fun DirectionsArea() {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CommentSection(
-    vararg comments: Comment,
+    comments: List<Comment>?,
     reply: String,
     onValueChange: (String) -> Unit,
     @StringRes label: Int,
@@ -196,14 +197,16 @@ fun CommentSection(
         modifier = Modifier.fillMaxHeight(),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ){
-        items(comments.size){ index ->
-            CommentCard(
-                comment = Comment(
-                    comments[index].userImage,
-                    comments[index].userName,
-                    comments[index].comment
+        if (comments != null) {
+            items(comments.size){ index ->
+                CommentCard(
+                    comment = Comment(
+                        comments[index].comment,
+                        comments[index].curator,
+                        //comments[index].recipe
+                    )
                 )
-            )
+            }
         }
     }
 }
@@ -216,15 +219,20 @@ fun CommentCard(
 ){
     androidx.compose.material3.Card {
         Row {
-            androidx.compose.material3.Icon(
-                painter = painterResource(id = comment.userImage),
-                contentDescription = null
-            )
+            painterResource(id = comment.curator.curatorImage ).let {
+                androidx.compose.material3.Icon(
+                    painter = it,
+                    contentDescription = null
+                )
+            }
+
             Column(
                 modifier.padding(8.dp)
             ) {
                 androidx.compose.material3.Text(
-                    text = comment.userName,
+                    text = stringResource(id = R.string.full_name,
+                        comment.curator.firstName, comment.curator.lastName
+                    ) ,
                     style = MaterialTheme.typography.labelLarge
                 )
                 androidx.compose.material3.Text(

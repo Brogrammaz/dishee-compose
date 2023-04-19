@@ -23,9 +23,10 @@ class RecipeViewModel(
         var recipe: Recipe = LocalRecipeProvider.recipeList[recipeId]
 
         _uiState.value = RecipeUiState(
-            id = recipe.id,
-            imageResId = recipe.imageResId,
-            title = recipe.title
+            id = recipe.recipeId,
+            imageResId = recipe.recipeImage,
+            title = recipe.recipeName,
+            comments = recipe.commentList
         )
     }
 

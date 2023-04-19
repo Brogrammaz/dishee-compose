@@ -23,10 +23,10 @@ class CuratorViewModel(
         var curator: Curator = LocalCuratorProvider.curatorList[curatorId]
 
         _uiState.value = CuratorUiState(
-            id = curator.id,
-            imageResId = curator.imageResId,
-            title = curator.title,
-            menus = curator.menuList
+            id = curator.curatorId,
+            imageResId = curator.curatorImage,
+            title =  curator.firstName +" " + curator.lastName,
+            recipes = curator.recipeList
         )
     }
 }

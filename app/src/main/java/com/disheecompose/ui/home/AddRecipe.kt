@@ -20,7 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.disheecompose.DisheeTopAppBar
+import com.disheecompose.DisheyTopAppBar
 import com.disheecompose.R
 import com.disheecompose.navigation.NavigationDestination
 import com.disheecompose.ui.components.OutlinedTextAreaSample
@@ -53,7 +53,7 @@ fun AddRecipeScreen(
 
     Scaffold(
         topBar = {
-            DisheeTopAppBar(
+            DisheyTopAppBar(
                 title = stringResource(id = AddRecipeDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = navigateBack

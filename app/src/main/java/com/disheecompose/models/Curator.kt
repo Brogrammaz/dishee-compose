@@ -1,8 +1,13 @@
 package com.disheecompose.models
 
+import androidx.annotation.DrawableRes
+
 data class Curator(
-    val id: Int,
-    val imageResId: Int,
-    val title: Int,
-    val menuList: List<Recipe>
+    val curatorId: Int,
+    val email: String,
+    @DrawableRes val curatorImage: Int,
+    val firstName: String,
+    val lastName: String,
+    val password: String,
+    val recipeList: List<Recipe>?
 )
