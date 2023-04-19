@@ -1,4 +1,4 @@
-package com.disheecompose.ui
+package com.disheecompose.ui.auth
 
 import android.os.Build
 import androidx.annotation.RequiresApi

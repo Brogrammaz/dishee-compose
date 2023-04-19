@@ -1,8 +1,10 @@
 package com.disheecompose.ui.home
 
 import androidx.lifecycle.ViewModel
-import com.disheecompose.data.local.LocalRestaurantProvider
-import com.disheecompose.models.Restaurant
+import com.disheecompose.data.local.LocalRecipeProvider
+import com.disheecompose.data.local.LocalCuratorProvider
+import com.disheecompose.models.Curator
+import com.disheecompose.models.Recipe
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -15,11 +17,19 @@ class HomeViewModel: ViewModel() {
     }
 
     private fun initializeUiState() {
-        val restaurantList: List<Restaurant> =
-            LocalRestaurantProvider.restaurantList
+        val recipeList: List<Recipe> =
+            LocalRecipeProvider.recipeList
+        val restaurantList: List<Curator> =
+            LocalCuratorProvider.curatorList
         _uiState.value =
-            HomeUiState(restaurantList = restaurantList)
+            HomeUiState(
+                restaurantList = restaurantList,
+                popularRecipeList = recipeList
+            )
     }
 }
 
-data class HomeUiState(val restaurantList: List<Restaurant> = listOf())
+data class HomeUiState(
+    val restaurantList: List<Curator> = listOf(),
+    val popularRecipeList: List<Recipe> = listOf()
+)

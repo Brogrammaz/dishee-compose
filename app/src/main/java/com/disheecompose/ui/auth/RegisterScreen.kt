@@ -1,4 +1,4 @@
-package com.disheecompose.ui
+package com.disheecompose.ui.auth
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -16,7 +16,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.disheecompose.R
 import com.disheecompose.ui.components.OutlinedTextFieldSample
 import com.disheecompose.ui.theme.DisheecomposeTheme
@@ -161,7 +160,7 @@ fun TermsAndConditions(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
 ){
-    Row() {
+    Row {
         Checkbox(checked = checked, onCheckedChange = onCheckedChange)
         Text(
             text = stringResource(id = R.string.terms_conditions),
