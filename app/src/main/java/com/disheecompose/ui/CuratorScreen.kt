@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.disheecompose.AppViewModelProvider
-import com.disheecompose.DisheeTopAppBar
+import com.disheecompose.DisheyTopAppBar
 import com.disheecompose.R
 import com.disheecompose.models.Recipe
 import com.disheecompose.navigation.NavigationDestination
@@ -50,7 +50,7 @@ fun CuratorScreen(
 
     Scaffold (
         topBar = {
-            DisheeTopAppBar(
+            DisheyTopAppBar(
                 title = stringResource(id = CuratorScreenDestination.titleRes),
                 canNavigateBack = true,
                 navigateUp = navigateBack
@@ -68,7 +68,7 @@ fun CuratorScreen(
                 modifier = Modifier
                     .fillMaxHeight(0.5f)
                     .fillMaxWidth()
-                    .padding(40.dp),
+                    .padding(40.dp,),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
@@ -82,12 +82,12 @@ fun CuratorScreen(
                     contentScale = ContentScale.Crop
                 )
                 Text(
-                    text = stringResource(id = curatorUiState.value.title),
+                    text = curatorUiState.value.title,
                     style = MaterialTheme.typography.labelLarge
                 )
 
                 Text(
-                    text = "17 Recipes",
+                    text = stringResource(id = R.string.noOfRecipes, curatorUiState.value.recipes!!.size),
                     style = MaterialTheme.typography.titleLarge
                 )
             }
@@ -102,8 +102,8 @@ fun CuratorScreen(
             )
 
             RecipeRow(
-                recipes = curatorUiState.value.menus,
-                onRecipeOnClick = { onRecipeClick(it.id) }
+                recipes = curatorUiState.value.recipes!!,
+                onRecipeOnClick = { onRecipeClick(it.recipeId) }
             )
 
         }

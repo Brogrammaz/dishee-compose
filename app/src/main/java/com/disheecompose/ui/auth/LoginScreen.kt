@@ -23,15 +23,24 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.disheecompose.R
+import com.disheecompose.navigation.NavigationDestination
 import com.disheecompose.ui.components.OutlinedTextFieldSample
 import com.disheecompose.ui.theme.DisheecomposeTheme
+
+object LoginDestination: NavigationDestination {
+    override val route = "login"
+    override val titleRes: Int = R.string.login
+}
 
 @Composable
 fun LoginScreen(
     onSignupButtonClicked: () -> Unit,
-    onRegisterTextButtonClicked: () -> Unit
+    onRegisterTextButtonClicked: () -> Unit,
+    authViewModel: AuthViewModel = viewModel()
 ){
+    val signInResult by authViewModel.signInResult.collectAsState()
     val focusManager = LocalFocusManager.current
 
     var email by remember {
@@ -99,7 +108,14 @@ fun LoginScreen(
         )
         Spacer(modifier = Modifier.weight(1f))
         Button(
-            onClick = onSignupButtonClicked,
+            onClick = {
+                authViewModel.signIn(email, password)
+                if(signInResult == true){
+                    onSignupButtonClicked?.invoke()
+                }else{
+                   //Show toast
+                }
+            },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
             Text(

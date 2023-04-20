@@ -27,7 +27,7 @@ fun DisheeApp() {
  * App bar to display title and conditionally display the back navigation.
  */
 @Composable
-fun DisheeTopAppBar(
+fun DisheyTopAppBar(
     title: String,
     canNavigateBack: Boolean,
     modifier: Modifier = Modifier,

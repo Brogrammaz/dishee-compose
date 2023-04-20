@@ -49,6 +49,7 @@
     <string name="upload">Upload</string>
     <string name="title_activity_add_item">AddItem</string>
     <string name="back_icon">Navigate Back Icon</string>
+    <string name="noOfRecipes">%d Recipes</string>
 
     <string name="ingredient_example">Rice\nOnions\nMeat\nCooking Oil</string>
     <string name="my_recipes">My Recipes</string>
@@ -65,5 +66,7 @@
     <string name="back_button">Back</string>
     <string name="curator_profile">Curator Profile</string>
     <string name="this_recipe">This recipe</string>
+
+    <string name="full_name">%1$s %2$s</string>
 
 </resources>

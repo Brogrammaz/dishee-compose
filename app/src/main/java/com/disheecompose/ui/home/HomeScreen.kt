@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -23,11 +24,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.disheecompose.DisheeTopAppBar
+import com.disheecompose.DisheyTopAppBar
 import com.disheecompose.R
 import com.disheecompose.models.Curator
 import com.disheecompose.models.Recipe
 import com.disheecompose.navigation.NavigationDestination
+import com.disheecompose.ui.RecipeRow
 
 object HomeDestination: NavigationDestination{
     override val route = "home"
@@ -58,7 +60,7 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            DisheeTopAppBar(
+            DisheyTopAppBar(
                 title = stringResource(id = HomeDestination.titleRes),
                 canNavigateBack = false
             )
@@ -135,13 +137,13 @@ fun HomeScreen(
             }
 
             PopularCurators(
-                curatorList = homeUiState.restaurantList,
-                onCuratorOnClick = { onCuratorOnClick(it.id) }
+                curatorList = homeUiState.curatorList,
+                onCuratorOnClick = { onCuratorOnClick(it.curatorId) }
             )
 
             PopularRecipes(
                 recipeList = homeUiState.popularRecipeList,
-                onRecipeOnClick = {onRecipeOnClick(it.id)}
+                onRecipeOnClick = {onRecipeOnClick(it.recipeId)}
             )
         }
     }
@@ -167,13 +169,11 @@ fun PopularCurators(
             )
             Spacer(modifier = modifier.weight(1f))
         }
-        Row(
-            modifier.fillMaxWidth()
-        ) {
-            CuratorCard(curator = curatorList[0], curatorOnClick = onCuratorOnClick)
-            Spacer(modifier = modifier.weight(1f))
-            CuratorCard(curator = curatorList[1], curatorOnClick = onCuratorOnClick)
-        }
+
+        CuratorRow(
+            curators = curatorList,
+            curatorOnClick = onCuratorOnClick
+        )
     }
 }
 
@@ -196,12 +196,29 @@ fun CuratorCard(
         ) {
             Image(
                 modifier = modifier.size(80.dp),
-                painter = painterResource(id = curator.imageResId),
+                painter = painterResource(id = curator.curatorImage),
                 contentDescription = null
             )
             Text(
-                text = stringResource(id = curator.title),
+                text = stringResource(id = R.string.full_name, curator.firstName, curator.lastName),
                 style = MaterialTheme.typography.labelLarge
+            )
+        }
+    }
+}
+
+@Composable
+fun CuratorRow(
+    curators: List<Curator>,
+    curatorOnClick: (Curator) -> Unit
+) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ){
+        items(curators.size) { index ->
+            CuratorCard(
+                curator = curators[index],
+                curatorOnClick = curatorOnClick
             )
         }
     }
@@ -226,13 +243,11 @@ fun PopularRecipes(
             Spacer(modifier = modifier.weight(1f))
         }
 
-        Row(
-            modifier.fillMaxWidth()
-        ) {
-            RecipeCard(recipe = recipeList[0], recipeOnClick = onRecipeOnClick)
-            Spacer(modifier = modifier.weight(1f))
-            RecipeCard(recipe = recipeList[1], recipeOnClick = onRecipeOnClick)
-        }
+        RecipeRow(
+            recipes = recipeList,
+            onRecipeOnClick = onRecipeOnClick
+        )
+
     }
 }
 
@@ -256,11 +271,11 @@ fun RecipeCard(
         ) {
             Image(
                 modifier = modifier.size(80.dp),
-                painter = painterResource(id = recipe.imageResId),
+                painter = painterResource(id = recipe.recipeImage),
                 contentDescription = null
             )
             Text(
-                text =  recipe.title,
+                text =  recipe.recipeName,
                 style = MaterialTheme.typography.labelLarge
             )
         }

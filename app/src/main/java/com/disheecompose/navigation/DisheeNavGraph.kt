@@ -26,8 +26,7 @@ enum class DisheeScreen {
     Welcome,
     Register,
     UploadPicture,
-    Success,
-    Login,
+    Success
 }
 
 /**
@@ -56,7 +55,7 @@ fun DisheeNavHost(
                 LaunchedEffect(Unit) {
                     delay(2000)
                     navController.navigate(
-                        route = DisheeScreen.Login.name,
+                        route = LoginDestination.route,
                         navOptions = NavOptions.Builder()
                             .setPopUpTo(DisheeScreen.Welcome.name, true)
                             .build()
@@ -68,7 +67,7 @@ fun DisheeNavHost(
             composable(route = DisheeScreen.Register.name){
                 RegisterScreen(
                     onRegisterButtonClicked = { navController.navigate(DisheeScreen.UploadPicture.name) },
-                    onLoginTextButtonClicked = { navController.navigate(DisheeScreen.Login.name) }
+                    onLoginTextButtonClicked = { navController.navigate(LoginDestination.route) }
                 )
             }
 
@@ -80,13 +79,13 @@ fun DisheeNavHost(
 
             composable(route = DisheeScreen.Success.name){
                 SuccessScreen(
-                    onGetStartedButtonClicked = { navController.navigate(DisheeScreen.Login.name) }
+                    onGetStartedButtonClicked = { navController.navigate(LoginDestination.route) }
                 )
             }
 
-            composable(route = DisheeScreen.Login.name){
+            composable(route = LoginDestination.route){
                 LoginScreen(
-                    onSignupButtonClicked = { navController.navigate(HomeDestination.route) },
+                    onSignupButtonClicked = { navController.navigate(HomeDestination.route)},
                     onRegisterTextButtonClicked = {navController.navigate(DisheeScreen.Register.name)}
                 )
             }
